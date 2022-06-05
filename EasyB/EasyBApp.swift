@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct EasyBApp: App {
+    
+    @State var budgetData: BudgetInformation = BudgetInformation.sampleData[0]
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            HomeView(budgetData: $budgetData)
         }
     }
 }

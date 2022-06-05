@@ -8,12 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		4B2F20E7284C23E90092F677 /* EasyBApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2F20E6284C23E90092F677 /* EasyBApp.swift */; };
-		4B2F20E9284C23E90092F677 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2F20E8284C23E90092F677 /* ContentView.swift */; };
+		4B2F20E9284C23E90092F677 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2F20E8284C23E90092F677 /* HomeView.swift */; };
 		4B2F20EB284C23EA0092F677 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B2F20EA284C23EA0092F677 /* Assets.xcassets */; };
 		4B2F20EE284C23EA0092F677 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B2F20ED284C23EA0092F677 /* Preview Assets.xcassets */; };
 		4B2F20F8284C23EA0092F677 /* EasyBTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2F20F7284C23EA0092F677 /* EasyBTests.swift */; };
 		4B2F2102284C23EB0092F677 /* EasyBUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2F2101284C23EB0092F677 /* EasyBUITests.swift */; };
 		4B2F2104284C23EB0092F677 /* EasyBUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2F2103284C23EB0092F677 /* EasyBUITestsLaunchTests.swift */; };
+		4B2F2114284C295F0092F677 /* VisualizedIncomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2F2113284C295F0092F677 /* VisualizedIncomeView.swift */; };
+		4B2F2116284C2D9F0092F677 /* BudgetInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2F2115284C2D9F0092F677 /* BudgetInformation.swift */; };
+		4B2F2118284C2E250092F677 /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2F2117284C2E250092F677 /* Expense.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +39,7 @@
 /* Begin PBXFileReference section */
 		4B2F20E3284C23E90092F677 /* EasyB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EasyB.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B2F20E6284C23E90092F677 /* EasyBApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EasyBApp.swift; sourceTree = "<group>"; };
-		4B2F20E8284C23E90092F677 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		4B2F20E8284C23E90092F677 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		4B2F20EA284C23EA0092F677 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4B2F20ED284C23EA0092F677 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		4B2F20F3284C23EA0092F677 /* EasyBTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EasyBTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -44,6 +47,9 @@
 		4B2F20FD284C23EB0092F677 /* EasyBUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EasyBUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B2F2101284C23EB0092F677 /* EasyBUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EasyBUITests.swift; sourceTree = "<group>"; };
 		4B2F2103284C23EB0092F677 /* EasyBUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EasyBUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		4B2F2113284C295F0092F677 /* VisualizedIncomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualizedIncomeView.swift; sourceTree = "<group>"; };
+		4B2F2115284C2D9F0092F677 /* BudgetInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetInformation.swift; sourceTree = "<group>"; };
+		4B2F2117284C2E250092F677 /* Expense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,10 +100,12 @@
 		4B2F20E5284C23E90092F677 /* EasyB */ = {
 			isa = PBXGroup;
 			children = (
+				4B2F2110284C24E30092F677 /* Models */,
 				4B2F20E6284C23E90092F677 /* EasyBApp.swift */,
-				4B2F20E8284C23E90092F677 /* ContentView.swift */,
+				4B2F20E8284C23E90092F677 /* HomeView.swift */,
 				4B2F20EA284C23EA0092F677 /* Assets.xcassets */,
 				4B2F20EC284C23EA0092F677 /* Preview Content */,
+				4B2F2113284C295F0092F677 /* VisualizedIncomeView.swift */,
 			);
 			path = EasyB;
 			sourceTree = "<group>";
@@ -125,6 +133,15 @@
 				4B2F2103284C23EB0092F677 /* EasyBUITestsLaunchTests.swift */,
 			);
 			path = EasyBUITests;
+			sourceTree = "<group>";
+		};
+		4B2F2110284C24E30092F677 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				4B2F2115284C2D9F0092F677 /* BudgetInformation.swift */,
+				4B2F2117284C2E250092F677 /* Expense.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,8 +274,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4B2F20E9284C23E90092F677 /* ContentView.swift in Sources */,
+				4B2F20E9284C23E90092F677 /* HomeView.swift in Sources */,
 				4B2F20E7284C23E90092F677 /* EasyBApp.swift in Sources */,
+				4B2F2114284C295F0092F677 /* VisualizedIncomeView.swift in Sources */,
+				4B2F2116284C2D9F0092F677 /* BudgetInformation.swift in Sources */,
+				4B2F2118284C2E250092F677 /* Expense.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
