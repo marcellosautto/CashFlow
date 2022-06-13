@@ -21,7 +21,7 @@ struct HomeView: View {
             bgColor.ignoresSafeArea(edges: .all)
             
             VStack {
-                Label("EasyB", systemImage: "dollarsign.circle")
+                Label("CashFlow", systemImage: "dollarsign.circle")
                     .foregroundStyle(textColor)
                     .font(.largeTitle.bold().italic())
                     .padding()

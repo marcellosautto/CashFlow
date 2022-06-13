@@ -19,18 +19,16 @@ struct ExpensesView: View {
     
     var body: some View {
         ZStack {
-            
             List{
                 Section {
                     ForEach($budgetData.expenses){$expense in
                         HStack{
-                            
                             Button(action: {
                                 isPresentingEditView = true
                                 newExpenseData = expense.data
                                 
                             }){
-                                Image("bag.circle")
+                                Image(systemName: "bag.circle.fill")
                                     .font(.callout)
                                     .labelStyle(.iconOnly)
                                     .foregroundColor(Color.cyan)

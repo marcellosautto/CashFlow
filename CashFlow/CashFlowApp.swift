@@ -8,7 +8,7 @@
 import SwiftUI
 
 @main
-struct EasyBApp: App {
+struct CashFlowApp: App {
     
     @State var budgetData: BudgetInformation = BudgetInformation.sampleData[0]
     
