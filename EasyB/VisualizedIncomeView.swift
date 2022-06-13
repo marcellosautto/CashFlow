@@ -38,7 +38,7 @@ struct VisualizedIncomeView: View {
         case(0.15..<0.30):
             return Color.orange
         case(0..<0.15):
-            return Color.orange
+            return Color.red
         default:
             return Color.green
         }

@@ -7,7 +7,8 @@
 
 import Foundation
 
-struct BudgetInformation {
+struct BudgetInformation{
+    
     var yearlyIncome: Float
     var monthlyIncome: Float
     var remainingIncome: Float
@@ -23,8 +24,14 @@ struct BudgetInformation {
         self.expenses = expenses
         self.remainingIncomeFraction = 1.0
         
+        
         updateRemainingIncome()
     }
+    
+ 
+}
+
+extension BudgetInformation {
     
     struct Data {
         var yearlyIncome: Float = 0
@@ -49,8 +56,32 @@ struct BudgetInformation {
         expenses = data.expenses
     }
     
+    mutating func updateBudgetInfo(from data: Data){
+        yearlyIncome = data.yearlyIncome
+        monthlyIncome = data.monthlyIncome
+        remainingIncome = data.remainingIncome
+        remainingIncomeFraction = data.remainingIncomeFraction
+        isGrossIncome = data.isGrossIncome
+        expenses = data.expenses
+        
+        updateRemainingIncome()
+    }
+    
+    mutating func updateExpenseInfo(from data: Expense.Data){
+        if let idx = self.expenses.firstIndex(where: {$0.id == data.id}) {
+            expenses[idx].name = data.name
+            expenses[idx].cost = data.cost
+            
+        }
+        
+        updateRemainingIncome()
+    }
+
+    
     mutating func updateRemainingIncome() -> Void{
         if (!self.expenses.isEmpty){
+            self.remainingIncome = self.monthlyIncome
+            
             for expense in self.expenses{
                 self.remainingIncome -= expense.cost
             }
@@ -64,7 +95,7 @@ extension BudgetInformation{
     
     static let sampleData: [BudgetInformation] = [
         BudgetInformation(yearlyIncome: 100000.0, isGrossIncome: true,
-                          expenses: [Expense(name: "Rent", cost: 2000),Expense(name: "Utilities", cost: 150.0)])
+                          expenses: Expense.sampleData)
     ]
     
     
