@@ -48,6 +48,6 @@ struct VisualizedIncomeView: View {
 
 struct VisualizedIncomeView_Previews: PreviewProvider {
     static var previews: some View {
-        VisualizedIncomeView(budgetData: .constant(BudgetInformation.sampleData[0]))
+        VisualizedIncomeView(budgetData: .constant(BudgetInformation.sampleData))
     }
 }

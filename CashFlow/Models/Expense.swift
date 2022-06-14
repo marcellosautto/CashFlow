@@ -41,8 +41,13 @@ extension Expense {
         name = data.name
         cost = data.cost
     }
+    
 }
 
 extension Expense{
-    static let sampleData: [Expense] = [Expense(name: "Rent", cost: 2000),Expense(name: "Utilities", cost: 150.0)]
+    static let sampleData: [[Expense]] = [
+        [Expense(name: "Rent", cost: 2000),Expense(name: "Utilities", cost: 150.0)],
+        [Expense(name: "401k", cost: 1000),Expense(name: "Vacation", cost: 200)]
+        
+    ]
 }

@@ -14,14 +14,16 @@ struct ExpensesView: View {
     @State private var isPresentingNewExpenseView = false
     
     @Binding var budgetData: BudgetInformation
+    @Binding var expenseContainer: ExpenseContainer
     
     let textColor: Color = Color(red: 0.15, green: 0.15, blue: 0.15)
+    
     
     var body: some View {
         ZStack {
             List{
                 Section {
-                    ForEach($budgetData.expenses){$expense in
+                    ForEach($expenseContainer.expenses){$expense in
                         HStack{
                             Button(action: {
                                 isPresentingEditView = true
@@ -31,7 +33,7 @@ struct ExpensesView: View {
                                 Image(systemName: "bag.circle.fill")
                                     .font(.callout)
                                     .labelStyle(.iconOnly)
-                                    .foregroundColor(Color.cyan)
+                                    .foregroundColor(Color.accentColor)
                             }
                             
                             Text("\(expense.name): $\(expense.cost, specifier: "%.2f")")
@@ -51,7 +53,9 @@ struct ExpensesView: View {
                                             Button("Done"){
                                                 isPresentingEditView = false
                                                 
-                                                budgetData.updateExpenseInfo(from: newExpenseData)
+                                                expenseContainer.updateExpenseInfo(from: newExpenseData)
+                                                
+                                                budgetData.updateAllIncome()
                                                 
                                             }
                                         }
@@ -64,7 +68,7 @@ struct ExpensesView: View {
                 }
             header: {
                 HStack{
-                    Label("Expenses", systemImage: "creditcard")
+                    Label(expenseContainer.title, systemImage: "creditcard")
                         .foregroundStyle(textColor)
                         .font(.title3.bold())
                     
@@ -92,8 +96,8 @@ struct ExpensesView: View {
                             ToolbarItem(placement: .confirmationAction){
                                 Button("Add"){
                                     let newExpense = Expense(data: newExpenseData)
-                                    budgetData.expenses.append(newExpense)
-                                    budgetData.updateRemainingIncome()
+                                    expenseContainer.expenses.append(newExpense)
+                                    budgetData.updateAllIncome()
                                     isPresentingNewExpenseView = false
                                     newExpenseData = Expense.Data()
                                 }
@@ -109,6 +113,7 @@ struct ExpensesView: View {
 
 struct ExpensesView_Previews: PreviewProvider {
     static var previews: some View {
-        ExpensesView(budgetData: .constant(BudgetInformation.sampleData[0]))
+        ExpensesView(budgetData: .constant(BudgetInformation.sampleData),
+                     expenseContainer: .constant(BudgetInformation.sampleData.expenseContainers[0]))
     }
 }

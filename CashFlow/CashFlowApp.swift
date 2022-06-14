@@ -10,7 +10,7 @@ import SwiftUI
 @main
 struct CashFlowApp: App {
     
-    @State var budgetData: BudgetInformation = BudgetInformation.sampleData[0]
+    @State var budgetData: BudgetInformation = BudgetInformation.sampleData
     
     var bgUIColor = UIColor(red: 0.9, green: 0.95, blue: 0.95, alpha: 1.0)
     
@@ -20,7 +20,9 @@ struct CashFlowApp: App {
     
     var body: some Scene {
         WindowGroup {
-            HomeView(budgetData: $budgetData)
+            NavigationView {
+                HomeView(budgetData: $budgetData)
+            }
         }
         
     }

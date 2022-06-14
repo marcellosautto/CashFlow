@@ -36,7 +36,25 @@ struct HomeView: View {
                     
                 }
                 
-                ExpensesView(budgetData: $budgetData)
+                List {
+                    ForEach($budgetData.expenseContainers){$container in
+                        NavigationLink(destination: ExpenseContainerView(budgetData: $budgetData, expenseContainerData: $container)){
+                            CardView(expenseContainer: container)
+                                .frame(maxWidth: .infinity)
+                                
+                        }
+                        .listRowBackground(container.theme.mainColor)
+                        
+                        
+                        
+                    }
+                    
+                }
+                .toolbar{
+                    Button(action: {}){
+                        Image(systemName: "plus")
+                    }
+                }
                 
             }
             
@@ -46,7 +64,10 @@ struct HomeView: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView(budgetData: .constant(BudgetInformation.sampleData[0]))
+        NavigationView{
+            HomeView(budgetData: .constant(BudgetInformation.sampleData))
+        }
+        
     }
     
 }

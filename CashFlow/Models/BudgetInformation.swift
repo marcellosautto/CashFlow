@@ -14,18 +14,18 @@ struct BudgetInformation{
     var remainingIncome: Float
     var remainingIncomeFraction: Float
     var isGrossIncome: Bool
-    var expenses: [Expense]
+    var expenseContainers: [ExpenseContainer]
     
-    init(yearlyIncome: Float, isGrossIncome: Bool, expenses: [Expense]) {
+    init(yearlyIncome: Float, isGrossIncome: Bool, expenseContainers: [ExpenseContainer]) {
         self.yearlyIncome = yearlyIncome
         self.monthlyIncome = yearlyIncome / 12.0
         self.remainingIncome = monthlyIncome
         self.isGrossIncome = isGrossIncome
-        self.expenses = expenses
+        self.expenseContainers = expenseContainers
         self.remainingIncomeFraction = 1.0
         
         
-        updateRemainingIncome()
+        updateAllIncome()
     }
     
  
@@ -39,12 +39,12 @@ extension BudgetInformation {
         var remainingIncome: Float = 0
         var remainingIncomeFraction: Float = 0
         var isGrossIncome: Bool = true
-        var expenses: [Expense] = []
+        var expenseContainers: [ExpenseContainer] = []
         
     }
     
     var data: Data {
-        Data(yearlyIncome: yearlyIncome, monthlyIncome: monthlyIncome, remainingIncome: remainingIncome, remainingIncomeFraction: remainingIncomeFraction, isGrossIncome: isGrossIncome, expenses: expenses)
+        Data(yearlyIncome: yearlyIncome, monthlyIncome: monthlyIncome, remainingIncome: remainingIncome, remainingIncomeFraction: remainingIncomeFraction, isGrossIncome: isGrossIncome, expenseContainers: expenseContainers)
     }
     
     init(data: Data){
@@ -53,7 +53,7 @@ extension BudgetInformation {
         remainingIncome = data.remainingIncome
         remainingIncomeFraction = data.remainingIncomeFraction
         isGrossIncome = data.isGrossIncome
-        expenses = data.expenses
+        expenseContainers = data.expenseContainers
     }
     
     mutating func updateBudgetInfo(from data: Data){
@@ -62,42 +62,47 @@ extension BudgetInformation {
         remainingIncome = data.remainingIncome
         remainingIncomeFraction = data.remainingIncomeFraction
         isGrossIncome = data.isGrossIncome
-        expenses = data.expenses
+        expenseContainers = data.expenseContainers
+        updateAllIncome()
         
-        updateRemainingIncome()
-    }
-    
-    mutating func updateExpenseInfo(from data: Expense.Data){
-        if let idx = self.expenses.firstIndex(where: {$0.id == data.id}) {
-            expenses[idx].name = data.name
-            expenses[idx].cost = data.cost
-            
-        }
-        
-        updateRemainingIncome()
     }
 
     
-    mutating func updateRemainingIncome() -> Void{
-        if (!self.expenses.isEmpty){
-            self.remainingIncome = self.monthlyIncome
-            
-            for expense in self.expenses{
-                self.remainingIncome -= expense.cost
+    mutating func updateAllIncome() -> Void{
+        self.remainingIncome = self.monthlyIncome
+        
+        for container in self.expenseContainers{
+            if (!container.expenses.isEmpty){
+                
+                for expense in container.expenses{
+                    self.remainingIncome -= expense.cost
+                }
+                
+                self.remainingIncomeFraction = remainingIncome / monthlyIncome
             }
             
-            remainingIncomeFraction = remainingIncome / monthlyIncome
         }
+        
+
     }
+    
+//    mutating func updateRemainingIncome(from container: ExpenseContainer) -> Void{
+//        if (!container.expenses.isEmpty){
+//            self.remainingIncome = self.monthlyIncome
+//
+//            for expense in container.expenses{
+//                self.remainingIncome -= expense.cost
+//            }
+//
+//            remainingIncomeFraction = remainingIncome / monthlyIncome
+//        }
+//    }
+    
+
 }
 
 extension BudgetInformation{
     
-    static let sampleData: [BudgetInformation] = [
-        BudgetInformation(yearlyIncome: 100000.0, isGrossIncome: true,
-                          expenses: Expense.sampleData)
-    ]
-    
-    
+    static let sampleData: BudgetInformation = BudgetInformation(yearlyIncome: 100000, isGrossIncome: true, expenseContainers: ExpenseContainer.sampleData)
     
 }
