@@ -9,6 +9,9 @@ import SwiftUI
 
 struct HomeView: View {
     
+    @State var newExpenseContainerData = ExpenseContainer.Data()
+    @State var isPresentingNewExpenseCategoryView: Bool = false
+    
     @Binding var budgetData: BudgetInformation
     
     let textColor: Color = Color(red: 0.15, green: 0.15, blue: 0.15)
@@ -21,10 +24,13 @@ struct HomeView: View {
             bgColor.ignoresSafeArea(edges: .all)
             
             VStack {
-                Label("CashFlow", systemImage: "dollarsign.circle")
-                    .foregroundStyle(textColor)
-                    .font(.largeTitle.bold().italic())
-                    .padding()
+//                Label("CashFlow", systemImage: "dollarsign.circle")
+//                    .foregroundStyle(textColor)
+//                    .font(.largeTitle.bold().italic())
+//                    .padding()
+                
+                Label("\(Date.now, format: .dateTime.month(.wide).day())", systemImage: "calendar")
+                    .font(.title)
                 
                 ZStack{
                     VisualizedIncomeView(budgetData: $budgetData)
@@ -51,13 +57,36 @@ struct HomeView: View {
                     
                 }
                 .toolbar{
-                    Button(action: {}){
+                    Button(action: {isPresentingNewExpenseCategoryView = true}){
                         Image(systemName: "plus")
                     }
                 }
                 
             }
             
+        }
+        .sheet(isPresented: $isPresentingNewExpenseCategoryView){
+            NavigationView{
+                ExpenseContainerEditView(newExpenseContainerData: $newExpenseContainerData )
+                    .toolbar{
+                        ToolbarItem(placement: .cancellationAction){
+                            Button("Cancel"){
+                                isPresentingNewExpenseCategoryView = false
+                                newExpenseContainerData = ExpenseContainer.Data()
+                            }
+                        }
+                        
+                        ToolbarItem(placement: .confirmationAction){
+                            Button("Add"){
+                                let newContainer = ExpenseContainer(data: newExpenseContainerData)
+                                budgetData.expenseContainers.append(newContainer)
+                                budgetData.updateAllIncome()
+                                isPresentingNewExpenseCategoryView = false
+                                newExpenseContainerData = ExpenseContainer.Data()
+                            }
+                        }
+                    }
+            }
         }
     }
 }

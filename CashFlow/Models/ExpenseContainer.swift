@@ -36,6 +36,37 @@ struct ExpenseContainer: Identifiable {
 
 extension ExpenseContainer{
     
+    struct Data {
+        let id: UUID = UUID()
+        var title: String = ""
+        var description: String = ""
+        var expenses: [Expense] = []
+        var total: Float = 0
+        var relativeTotal: Float = 0
+        var theme: Theme = .indigo
+    }
+    
+    var data: Data {
+        Data(title: title, description: description, expenses: expenses, total: total, relativeTotal: relativeTotal, theme: theme)
+    }
+    
+    init(data: Data){
+        id = data.id
+        title = data.title
+        description = data.description
+        expenses = data.expenses
+        theme = data.theme
+        total = data.total
+        relativeTotal = data.relativeTotal
+        
+    }
+    
+    mutating func updateExpenseContainer(from data: ExpenseContainer.Data) {
+        title = data.title
+        description = data.description
+        theme = data.theme
+    }
+    
     mutating func updateExpenseInfo(from data: Expense.Data){
         if let idx = self.expenses.firstIndex(where: {$0.id == data.id}) {
             expenses[idx].name = data.name

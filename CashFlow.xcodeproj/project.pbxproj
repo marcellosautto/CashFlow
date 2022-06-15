@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4B217A292858FA0E0084805F /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B217A282858FA0E0084805F /* CardView.swift */; };
+		4B217A2B285954370084805F /* ExpenseContainerEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B217A2A285954370084805F /* ExpenseContainerEditView.swift */; };
 		4B2F20E7284C23E90092F677 /* CashFlowApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2F20E6284C23E90092F677 /* CashFlowApp.swift */; };
 		4B2F20E9284C23E90092F677 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2F20E8284C23E90092F677 /* HomeView.swift */; };
 		4B2F20EB284C23EA0092F677 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B2F20EA284C23EA0092F677 /* Assets.xcassets */; };
@@ -46,6 +47,7 @@
 
 /* Begin PBXFileReference section */
 		4B217A282858FA0E0084805F /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		4B217A2A285954370084805F /* ExpenseContainerEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseContainerEditView.swift; sourceTree = "<group>"; };
 		4B2F20E3284C23E90092F677 /* CashFlow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CashFlow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B2F20E6284C23E90092F677 /* CashFlowApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashFlowApp.swift; sourceTree = "<group>"; };
 		4B2F20E8284C23E90092F677 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 				4BF41B5C2857EB880035840F /* ThemePicker.swift */,
 				4BF41B5E2857EEAD0035840F /* ExpenseContainerView.swift */,
 				4B217A282858FA0E0084805F /* CardView.swift */,
+				4B217A2A285954370084805F /* ExpenseContainerEditView.swift */,
 			);
 			path = CashFlow;
 			sourceTree = "<group>";
@@ -309,6 +312,7 @@
 				4B2F2114284C295F0092F677 /* VisualizedIncomeView.swift in Sources */,
 				4B2F2116284C2D9F0092F677 /* BudgetInformation.swift in Sources */,
 				4BF41B5B2857E9910035840F /* Theme.swift in Sources */,
+				4B217A2B285954370084805F /* ExpenseContainerEditView.swift in Sources */,
 				4BF41B592857E7C90035840F /* ThemeView.swift in Sources */,
 				4B2F2118284C2E250092F677 /* Expense.swift in Sources */,
 			);

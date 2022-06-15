@@ -32,6 +32,9 @@ extension Expense {
         
     }
     
+}
+
+extension Expense{
     var data: Data {
         Data(id: id, name: name, cost: cost)
     }
@@ -41,7 +44,6 @@ extension Expense {
         name = data.name
         cost = data.cost
     }
-    
 }
 
 extension Expense{
