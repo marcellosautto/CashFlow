@@ -21,7 +21,11 @@ struct CardView: View {
             HStack{
                 Text("Total: $\(expenseContainer.total, specifier: "%.2f")")
                     .font(.caption)
+                Spacer()
+                Text("\(expenseContainer.relativeTotal, specifier: "%.2f")%")
+                    .font(.caption)
             }
+            .padding(.horizontal)
             
         }
         .foregroundColor(expenseContainer.theme.accentColor)

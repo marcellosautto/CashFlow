@@ -57,6 +57,7 @@ struct HomeView: View {
                     
                 }
                 .toolbar{
+                    ///toggles sheet for creating a new expense category
                     Button(action: {isPresentingNewExpenseCategoryView = true}){
                         Image(systemName: "plus")
                     }
@@ -69,6 +70,7 @@ struct HomeView: View {
             NavigationView{
                 ExpenseContainerEditView(newExpenseContainerData: $newExpenseContainerData )
                     .toolbar{
+                        ///return to home screen and dismiss any changes
                         ToolbarItem(placement: .cancellationAction){
                             Button("Cancel"){
                                 isPresentingNewExpenseCategoryView = false
@@ -76,6 +78,7 @@ struct HomeView: View {
                             }
                         }
                         
+                        ///adds a new expense container
                         ToolbarItem(placement: .confirmationAction){
                             Button("Add"){
                                 let newContainer = ExpenseContainer(data: newExpenseContainerData)

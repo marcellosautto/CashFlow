@@ -38,6 +38,7 @@ struct ExpenseContainerView: View {
                                 
                                 expenseContainerData.updateExpenseContainer(from: newExpenseContainerData)
                                 
+                                
                             }
                         }
                         
@@ -52,6 +53,7 @@ struct ExpenseContainerView: View {
                 }
             }
         }
+        
         
     }
 }

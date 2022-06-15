@@ -7,6 +7,7 @@
 
 import Foundation
 
+///customizable containers the user creates to store and itemize their expenses
 struct ExpenseContainer: Identifiable {
     
     let id: UUID
@@ -27,13 +28,13 @@ struct ExpenseContainer: Identifiable {
         self.relativeTotal = 0
         
         setTotalExpenses()
-//        setRelativeTotal()
         
     }
     
     
 }
 
+///Extension for handling CRUD operations
 extension ExpenseContainer{
     
     struct Data {
@@ -87,12 +88,13 @@ extension ExpenseContainer{
         
     }
     
-    mutating func setRelativeTotal()-> Void{
-        self.relativeTotal = (total / BudgetInformation.sampleData.monthlyIncome) * 100
+    mutating func setRelativeTotal(monthlyIncome: Float)-> Void{
+        self.relativeTotal = (total / monthlyIncome) * 100
         
     }
     
 }
+
 
 extension ExpenseContainer{
     static let sampleData: [ExpenseContainer] = [

@@ -7,6 +7,8 @@
 
 import Foundation
 
+//Stores all user budget information
+
 struct BudgetInformation{
     
     var yearlyIncome: Float
@@ -33,6 +35,7 @@ struct BudgetInformation{
 
 extension BudgetInformation {
     
+    ///Data is used for handeling CRUD operations
     struct Data {
         var yearlyIncome: Float = 0
         var monthlyIncome: Float = 0
@@ -43,10 +46,12 @@ extension BudgetInformation {
         
     }
     
+
     var data: Data {
         Data(yearlyIncome: yearlyIncome, monthlyIncome: monthlyIncome, remainingIncome: remainingIncome, remainingIncomeFraction: remainingIncomeFraction, isGrossIncome: isGrossIncome, expenseContainers: expenseContainers)
     }
     
+    ///data initializer
     init(data: Data){
         yearlyIncome = data.yearlyIncome
         monthlyIncome = data.monthlyIncome
@@ -56,6 +61,7 @@ extension BudgetInformation {
         expenseContainers = data.expenseContainers
     }
     
+    ///updates all BudgetInformation
     mutating func updateBudgetInfo(from data: Data){
         yearlyIncome = data.yearlyIncome
         monthlyIncome = data.monthlyIncome
@@ -67,19 +73,21 @@ extension BudgetInformation {
         
     }
 
-    
+    ///updates remaining income from all expense categories and sets their relative total
     mutating func updateAllIncome() -> Void{
         self.remainingIncome = self.monthlyIncome
         
-        for container in self.expenseContainers{
-            if (!container.expenses.isEmpty){
+        for i in 0...self.expenseContainers.count-1{
+            if (!expenseContainers[i].expenses.isEmpty){
                 
-                for expense in container.expenses{
+                for expense in expenseContainers[i].expenses{
                     self.remainingIncome -= expense.cost
                 }
                 
                 self.remainingIncomeFraction = remainingIncome / monthlyIncome
             }
+            
+            expenseContainers[i].setRelativeTotal(monthlyIncome: monthlyIncome)
             
         }
         

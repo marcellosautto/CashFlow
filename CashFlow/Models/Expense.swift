@@ -7,6 +7,7 @@
 
 import Foundation
 
+///Represents each expense a user adds to their expense containers
 struct Expense: Identifiable {
     let id: UUID
     var name: String
@@ -18,11 +19,6 @@ struct Expense: Identifiable {
         self.cost = cost
     }
 }
-
-//protocol ExpenseModifiable{
-//    mutating func updateExpenseInfo(from data: Expense.Data)
-//    
-//}
 
 extension Expense {
     struct Data {
