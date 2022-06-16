@@ -18,7 +18,7 @@ struct HomeView: View {
     @Binding var budgetData: BudgetInformation
     
     let textColor: Color = Color(red: 0.15, green: 0.15, blue: 0.15)
-    let bgColor: Color = Color(red: 0.9, green: 0.95, blue: 0.95)
+    let bgColor: Color = Color(red: 0.741, green: 0.878, blue: 0.788) // #bde0c9
     
     
     var body: some View {

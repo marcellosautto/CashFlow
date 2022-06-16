@@ -7,27 +7,30 @@ struct SignUpView: View {
     @Binding var user: User
     
     @EnvironmentObject var viewModel: AppViewModel
-    let bgColor: Color = Color(red: 0.9, green: 0.95, blue: 0.95)
+    let bgColor: Color = Color(red: 0.451, green: 0.749, blue: 0.631) // #73bfa1
+    
+    let textFieldBgColor: Color = Color(red: 0.9, green: 0.9, blue: 0.9)
     
     var body: some View {
         VStack {
             
-            Label("Cash Flow", systemImage: "dollarsign.circle")
+            Text("Create an Account")
                 .font(.title)
             
             VStack{
+                
                 TextField("Email Address", text: $user.email)
                     .disableAutocorrection(true)
                     .autocapitalization(.none)
                     .padding()
-                    .background(Color(.secondarySystemBackground))
+                    .background(textFieldBgColor)
                     .cornerRadius(5.0)
                 
                 SecureField("Password", text: $user.password)
                     .disableAutocorrection(true)
                     .autocapitalization(.none)
                     .padding()
-                    .background(Color(.secondarySystemBackground))
+                    .background(textFieldBgColor)
                     .cornerRadius(5.0)
                 
                 Button(action: {
@@ -41,9 +44,9 @@ struct SignUpView: View {
                 }, label: {
                     Text("Sign Up")
                         .frame(width: 200, height: 50)
-                        .background(Color.green)
-                        .foregroundColor(Color.black)
-                        .cornerRadius(5.0)
+                        .background(Color.black)
+                        .foregroundColor(Color.white)
+                        .cornerRadius(10.0)
                 })
                 
                 
@@ -64,5 +67,6 @@ struct SignUpView: View {
 struct SignUpView_Previews: PreviewProvider {
     static var previews: some View {
         SignUpView(user: .constant(User.sampleUser))
+            .environmentObject(AppViewModel())
     }
 }

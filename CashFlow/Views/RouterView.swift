@@ -15,25 +15,22 @@ struct RouterView: View {
     @Binding var user: User
     
     var body: some View {
-        NavigationView{
-            if viewModel.isSignedIn {
-                HomeView(budgetData: $budgetData)
-                    .environmentObject(viewModel)
-            }
-            else{
-                SignInView(user: $user)
-                    .environmentObject(viewModel)
-            }
+        
+        if viewModel.isSignedIn {
+            HomeView(budgetData: $budgetData)
+                .environmentObject(viewModel)
         }
-        .onAppear{
-            viewModel.signedIn = viewModel.isSignedIn  
+        else{
+            SignInView(user: $user)
+                .environmentObject(viewModel)
         }
-
     }
+    
 }
 
 struct RouterView_Previews: PreviewProvider {
     static var previews: some View {
         RouterView(budgetData: .constant(BudgetInformation.sampleData), user: .constant(User.sampleUser))
+            .environmentObject(AppViewModel())
     }
 }

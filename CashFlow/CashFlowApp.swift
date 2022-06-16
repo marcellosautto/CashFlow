@@ -18,7 +18,7 @@ struct CashFlowApp: App {
     @State var budgetData: BudgetInformation = BudgetInformation.sampleData
     @State var user: User = User.sampleUser
     
-    var bgUIColor = UIColor(red: 0.9, green: 0.95, blue: 0.95, alpha: 1.0)
+    var bgUIColor = UIColor(red: 0.741, green: 0.878, blue: 0.788, alpha: 1) // #bde0c9
     
     init(){
         UITableView.appearance().backgroundColor = bgUIColor
@@ -26,11 +26,16 @@ struct CashFlowApp: App {
     
     var body: some Scene {
         WindowGroup {
-            NavigationView {
+            NavigationView{
                 RouterView(budgetData: $budgetData, user: $user)
                     .environmentObject(viewModel)
-                
             }
+            .onAppear{
+                viewModel.signedIn = viewModel.isSignedIn
+            }
+            
+            
+            
         }
         
     }
