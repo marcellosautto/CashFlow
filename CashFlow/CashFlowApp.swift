@@ -6,11 +6,17 @@
 //
 
 import SwiftUI
+import Firebase
 
 @main
 struct CashFlowApp: App {
     
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    
+    @StateObject private var viewModel: AppViewModel = AppViewModel()
+    
     @State var budgetData: BudgetInformation = BudgetInformation.sampleData
+    @State var user: User = User.sampleUser
     
     var bgUIColor = UIColor(red: 0.9, green: 0.95, blue: 0.95, alpha: 1.0)
     
@@ -21,9 +27,20 @@ struct CashFlowApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationView {
-                HomeView(budgetData: $budgetData)
+                RouterView(budgetData: $budgetData, user: $user)
+                    .environmentObject(viewModel)
+                
             }
         }
         
+    }
+}
+
+class AppDelegate: NSObject, UIApplicationDelegate {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        
+        FirebaseApp.configure()
+        
+        return true
     }
 }

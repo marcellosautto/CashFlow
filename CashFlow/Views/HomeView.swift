@@ -6,8 +6,11 @@
 //
 
 import SwiftUI
+import Firebase
 
 struct HomeView: View {
+    
+    @EnvironmentObject var viewModel: AppViewModel
     
     @State var newExpenseContainerData = ExpenseContainer.Data()
     @State var isPresentingNewExpenseCategoryView: Bool = false
@@ -57,10 +60,22 @@ struct HomeView: View {
                     
                 }
                 .toolbar{
-                    ///toggles sheet for creating a new expense category
-                    Button(action: {isPresentingNewExpenseCategoryView = true}){
-                        Image(systemName: "plus")
+                    
+                    ToolbarItem{
+                        ///toggles sheet for creating a new expense category
+                        Button(action: {isPresentingNewExpenseCategoryView = true}){
+                            Image(systemName: "plus")
+                        }
                     }
+                    
+                    ToolbarItem(placement: .cancellationAction){
+                        Button("Sign Out"){
+                            viewModel.signOut()
+                        }
+                    }
+                    
+                    
+                    
                 }
                 
             }
