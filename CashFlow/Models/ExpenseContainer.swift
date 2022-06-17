@@ -66,6 +66,7 @@ extension ExpenseContainer{
         title = data.title
         description = data.description
         theme = data.theme
+        
     }
     
     mutating func updateExpenseInfo(from data: Expense.Data){

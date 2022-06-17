@@ -87,7 +87,7 @@ extension BudgetInformation {
                 self.remainingIncomeFraction = remainingIncome / monthlyIncome
             }
             
-            expenseContainers[i].setRelativeTotal(monthlyIncome: monthlyIncome)
+            self.expenseContainers[i].setRelativeTotal(monthlyIncome: monthlyIncome)
             
         }
         

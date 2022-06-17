@@ -12,13 +12,15 @@ struct HomeView: View {
     
     @EnvironmentObject var viewModel: AppViewModel
     
+    @State var modifiedBudgetData = BudgetInformation.Data()
     @State var newExpenseContainerData = ExpenseContainer.Data()
     @State var isPresentingNewExpenseCategoryView: Bool = false
+    @State var isPresentingEditBudgetView: Bool = false
     
     @Binding var budgetData: BudgetInformation
     
     let textColor: Color = Color(red: 0.15, green: 0.15, blue: 0.15)
-    let bgColor: Color = Color(red: 0.741, green: 0.878, blue: 0.788) // #bde0c9
+    let bgColor: Color = Color(red: 0.94, green: 0.94, blue: 0.94)
     
     
     var body: some View {
@@ -27,10 +29,6 @@ struct HomeView: View {
             bgColor.ignoresSafeArea(edges: .all)
             
             VStack {
-//                Label("CashFlow", systemImage: "dollarsign.circle")
-//                    .foregroundStyle(textColor)
-//                    .font(.largeTitle.bold().italic())
-//                    .padding()
                 
                 Label("\(Date.now, format: .dateTime.month(.wide).day())", systemImage: "calendar")
                     .font(.title)
@@ -43,9 +41,24 @@ struct HomeView: View {
                         .font(.largeTitle)
                         .accessibilityLabel("Money remaining")
                     
+                    VStack{
+                        Spacer()
+                            .frame(height: 130)
+                        Button(action: {
+                            isPresentingEditBudgetView = true
+                        }, label: {
+                            Text("Edit")
+                                .font(.headline)
+                        })
+                    }
+                    
+                    
                 }
                 
+
+                
                 List {
+                    
                     ForEach($budgetData.expenseContainers){$container in
                         NavigationLink(destination: ExpenseContainerView(budgetData: $budgetData, expenseContainerData: $container)){
                             CardView(expenseContainer: container)
@@ -98,7 +111,8 @@ struct HomeView: View {
                             Button("Add"){
                                 let newContainer = ExpenseContainer(data: newExpenseContainerData)
                                 budgetData.expenseContainers.append(newContainer)
-                                budgetData.updateAllIncome()
+                                budgetData.updateBudgetInfo(from: budgetData.data)
+                                
                                 isPresentingNewExpenseCategoryView = false
                                 newExpenseContainerData = ExpenseContainer.Data()
                             }

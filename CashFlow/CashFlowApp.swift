@@ -18,7 +18,7 @@ struct CashFlowApp: App {
     @State var budgetData: BudgetInformation = BudgetInformation.sampleData
     @State var user: User = User.sampleUser
     
-    var bgUIColor = UIColor(red: 0.741, green: 0.878, blue: 0.788, alpha: 1) // #bde0c9
+    var bgUIColor = UIColor(red: 0.94, green: 0.94, blue: 0.94, alpha: 1) 
     
     init(){
         UITableView.appearance().backgroundColor = bgUIColor

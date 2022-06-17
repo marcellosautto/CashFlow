@@ -66,8 +66,6 @@ struct SignInView: View {
         }
         .padding()
         .background(bgColor)
-
-        
         
     }
 }

@@ -54,8 +54,7 @@ struct ExpensesView: View {
                                                 isPresentingEditView = false
                                                 
                                                 expenseContainer.updateExpenseInfo(from: newExpenseData)
-                                                
-                                                budgetData.updateAllIncome()
+                                                budgetData.updateBudgetInfo(from: budgetData.data)
                                                 
                                             }
                                         }
@@ -93,11 +92,13 @@ struct ExpensesView: View {
                                 }
                             }
                             
+                            
                             ToolbarItem(placement: .confirmationAction){
                                 Button("Add"){
                                     let newExpense = Expense(data: newExpenseData)
                                     expenseContainer.expenses.append(newExpense)
-                                    budgetData.updateAllIncome()
+                                    expenseContainer.updateExpenseInfo(from: newExpenseData)
+                                    budgetData.updateBudgetInfo(from: budgetData.data)
                                     isPresentingNewExpenseView = false
                                     newExpenseData = Expense.Data()
                                 }

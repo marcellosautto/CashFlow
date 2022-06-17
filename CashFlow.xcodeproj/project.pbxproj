@@ -134,6 +134,7 @@
 		4B2F20E5284C23E90092F677 /* CashFlow */ = {
 			isa = PBXGroup;
 			children = (
+				4B3C4D41285C18EF0028E648 /* ViewModels */,
 				4B80C5A9285A9FFB0060F935 /* Views */,
 				4B80C5A2285A9D810060F935 /* GoogleService-Info.plist */,
 				4B2F2110284C24E30092F677 /* Models */,
@@ -177,9 +178,16 @@
 				4B2F2117284C2E250092F677 /* Expense.swift */,
 				4BF41B562857E5F60035840F /* ExpenseContainer.swift */,
 				4BF41B5A2857E9910035840F /* Theme.swift */,
-				4B7CD5AB285AE84A00F9D448 /* AppViewModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		4B3C4D41285C18EF0028E648 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				4B7CD5AB285AE84A00F9D448 /* AppViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		4B80C5A9285A9FFB0060F935 /* Views */ = {

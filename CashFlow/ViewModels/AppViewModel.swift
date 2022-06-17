@@ -10,10 +10,10 @@ import Firebase
 
 class AppViewModel: ObservableObject {
     
-    
     @Published var signedIn = false
     
     let auth = Auth.auth()
+    let db = Firestore.firestore()
     
     var isSignedIn: Bool{
         return auth.currentUser != nil
@@ -43,6 +43,8 @@ class AppViewModel: ObservableObject {
                 self?.signedIn = true
             }
         }
+        
+        db.collection("users").addDocument(data:["email":email, "password": password])
     }
     
     func signOut() {

@@ -8,15 +8,12 @@
 import Foundation
 import Firebase
 
-struct User: Identifiable{
+struct User{
     
-    let userID: Int
+    let id: UUID = UUID()
     var email: String
     var password: String
     
-    var id: Int {
-        return userID
-    }
 }
 
 extension User{
@@ -28,5 +25,5 @@ extension User{
 }
 
 extension User{
-    static let sampleUser = User(userID: 0, email: "user@email.com", password: "password")
+    static let sampleUser = User(email: "user@email.com", password: "password")
 }

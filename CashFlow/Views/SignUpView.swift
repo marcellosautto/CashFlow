@@ -39,8 +39,8 @@ struct SignUpView: View {
                         return
                     }
                     
-                    //THROWING ERROR:  No ObservableObject of type AppViewModel found
                     viewModel.signUp(email: user.email, password: user.password)
+                    
                 }, label: {
                     Text("Sign Up")
                         .frame(width: 200, height: 50)

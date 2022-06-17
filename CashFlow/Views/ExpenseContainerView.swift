@@ -11,6 +11,8 @@ struct ExpenseContainerView: View {
     
     @State var isPresentingEditView: Bool = false
     @State var newExpenseContainerData = ExpenseContainer.Data()
+    @State var isPresentingNewExpenseCategoryView: Bool = false
+    
     @Binding var budgetData: BudgetInformation
     @Binding var expenseContainerData: ExpenseContainer
     

@@ -17,6 +17,7 @@ struct ExpensesEditView: View {
                 TextField("Name", text: $expenseData.name)
                 TextField("Cost", value: $expenseData.cost, format: .currency(code: "USD"))
             }
+            
         }
     }
 }
