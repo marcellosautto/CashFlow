@@ -9,23 +9,22 @@ import SwiftUI
 
 struct BudgetInformationEditView: View {
     
-    @EnvironmentObject var viewModel: AppViewModel
+    @EnvironmentObject var appViewModel: AppViewModel
     
     var body: some View {
         List {
             Section("Budget"){
-                ForEach(viewModel.budgetInformation) { budget in
                     VStack{
-                        Text("Annual Income: $\(budget.yearlyIncome, specifier: "%.2f")")
-                        Text("Monthly Income: $\(budget.monthlyIncome, specifier: "%.2f")")
-                        Text("Remaining Income: $\(budget.remainingIncome, specifier: "%.2f")")
-                        Text("Remaining Income Fraction: \(budget.remainingIncomeFraction, specifier: "%.0f") / 1")
+                        Text("Annual Income: $\(appViewModel.budgetInformation.yearlyIncome, specifier: "%.2f")")
+                        Text("Monthly Income: $\(appViewModel.budgetInformation.monthlyIncome, specifier: "%.2f")")
+                        Text("Remaining Income: $\(appViewModel.budgetInformation.remainingIncome, specifier: "%.2f")")
+                        Text("Remaining Income Fraction: \(appViewModel.budgetInformation.remainingIncomeFraction, specifier: "%.0f") / 1")
 
                         
                     }
                     
                     VStack{
-                        ForEach(viewModel.expenseContainers){ container in
+                        ForEach(appViewModel.expenseContainers){ container in
                             Text("Title: \(container.title)")
                             Text("Description: \(container.description)")
                             Text("Total: $\(container.total, specifier: "%.2f")")
@@ -33,7 +32,7 @@ struct BudgetInformationEditView: View {
                             Text("Theme: \(container.theme.rawValue)")
                             
                             
-                            ForEach(viewModel.expenses){ expense in
+                            ForEach(container.expenses){ expense in
                                 Text("\(expense.name): $\(expense.cost, specifier: "%.2f")")
                                     .font(.subheadline)
                             }
@@ -43,7 +42,6 @@ struct BudgetInformationEditView: View {
                         }
                     }
 
-                }
             }
             
         }

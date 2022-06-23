@@ -6,7 +6,7 @@ struct SignUpView: View {
     
     @Binding var user: User
     
-    @EnvironmentObject var viewModel: AppViewModel
+    @EnvironmentObject var authViewModel: AuthViewModel
     let bgColor: Color = Color(red: 0.451, green: 0.749, blue: 0.631) // #73bfa1
     
     let textFieldBgColor: Color = Color(red: 0.9, green: 0.9, blue: 0.9)
@@ -39,7 +39,7 @@ struct SignUpView: View {
                         return
                     }
                     
-                    viewModel.signUp(email: user.email, password: user.password)
+                    authViewModel.signUp(email: user.email, password: user.password)
                     
                 }, label: {
                     Text("Sign Up")

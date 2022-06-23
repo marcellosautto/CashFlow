@@ -34,7 +34,7 @@ struct CardView: View {
 
 struct CardView_Previews: PreviewProvider {
     
-    static let expenseContainer: ExpenseContainer = BudgetInformation.sampleData.expenseContainers[0]
+    static let expenseContainer: ExpenseContainer = User.sampleUser.expenseContainers[0]
     
     static var previews: some View {
         CardView(expenseContainer: expenseContainer)

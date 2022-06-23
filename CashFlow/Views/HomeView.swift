@@ -10,14 +10,17 @@ import Firebase
 
 struct HomeView: View {
     
-    @EnvironmentObject var viewModel: AppViewModel
+    @EnvironmentObject var authViewModel: AuthViewModel
+    @EnvironmentObject var appViewModel: AppViewModel
+    
+    
     
     @State var modifiedBudgetData = BudgetInformation.Data()
     @State var newExpenseContainerData = ExpenseContainer.Data()
     @State var isPresentingNewExpenseCategoryView: Bool = false
     @State var isPresentingEditBudgetView: Bool = false
     
-    @Binding var budgetData: BudgetInformation
+    @Binding var user: User
     
     let textColor: Color = Color(red: 0.15, green: 0.15, blue: 0.15)
     let bgColor: Color = Color(red: 0.94, green: 0.94, blue: 0.94)
@@ -34,9 +37,9 @@ struct HomeView: View {
                     .font(.title)
                 
                 ZStack{
-                    VisualizedIncomeView(budgetData: $budgetData)
+                    VisualizedIncomeView(budgetData: $user.budgetInformation)
                     
-                    Text("$\(budgetData.remainingIncome, specifier: "%.2f")")
+                    Text("$\(user.budgetInformation.remainingIncome, specifier: "%.2f")")
                         .foregroundStyle(textColor)
                         .font(.largeTitle)
                         .accessibilityLabel("Money remaining")
@@ -53,7 +56,7 @@ struct HomeView: View {
                     }
                     .sheet(isPresented: $isPresentingEditBudgetView){
                         NavigationView{
-                            BudgetInformationEditView().environmentObject(viewModel)
+                            BudgetInformationEditView().environmentObject(appViewModel)
                         }
                     }
                     
@@ -64,8 +67,8 @@ struct HomeView: View {
                 
                 List {
                     
-                    ForEach($budgetData.expenseContainers){$container in
-                        NavigationLink(destination: ExpenseContainerView(budgetData: $budgetData, expenseContainerData: $container)){
+                    ForEach($user.expenseContainers){$container in
+                        NavigationLink(destination: ExpenseContainerView(budgetData: $user.budgetInformation, expenseContainerData: $container)){
                             CardView(expenseContainer: container)
                                 .frame(maxWidth: .infinity)
                                 
@@ -88,7 +91,7 @@ struct HomeView: View {
                     
                     ToolbarItem(placement: .cancellationAction){
                         Button("Sign Out"){
-                            viewModel.signOut()
+                            authViewModel.signOut()
                         }
                     }
                     
@@ -115,8 +118,8 @@ struct HomeView: View {
                         ToolbarItem(placement: .confirmationAction){
                             Button("Add"){
                                 let newContainer = ExpenseContainer(data: newExpenseContainerData)
-                                budgetData.expenseContainers.append(newContainer)
-                                budgetData.updateBudgetInfo(from: budgetData.data)
+                                user.expenseContainers.append(newContainer)
+                                user.budgetInformation.updateBudgetInfo(from: user.budgetInformation.data)
                                 
                                 isPresentingNewExpenseCategoryView = false
                                 newExpenseContainerData = ExpenseContainer.Data()
@@ -131,7 +134,9 @@ struct HomeView: View {
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView{
-            HomeView(budgetData: .constant(BudgetInformation.sampleData))
+            HomeView(user: .constant(User.sampleUser))
+                .environmentObject(AuthViewModel())
+                .environmentObject(AppViewModel())
         }
         
     }

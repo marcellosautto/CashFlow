@@ -9,23 +9,19 @@ import Foundation
 
 //Stores all user budget information
 
-struct BudgetInformation: Identifiable{
+struct BudgetInformation{
     
-    let id: UUID
     var yearlyIncome: Float
     var monthlyIncome: Float
     var remainingIncome: Float
     var remainingIncomeFraction: Float
     var isGrossIncome: Bool
-    var expenseContainers: [ExpenseContainer]
     
-    init(id: UUID = UUID(), yearlyIncome: Float, isGrossIncome: Bool, expenseContainers: [ExpenseContainer]) {
-        self.id = id
+    init(yearlyIncome: Float, isGrossIncome: Bool) {
         self.yearlyIncome = yearlyIncome
         self.monthlyIncome = yearlyIncome / 12.0
         self.remainingIncome = monthlyIncome
         self.isGrossIncome = isGrossIncome
-        self.expenseContainers = expenseContainers
         self.remainingIncomeFraction = 1.0
         
         
@@ -39,30 +35,26 @@ extension BudgetInformation {
     
     ///Data is used for handeling CRUD operations
     struct Data {
-        var id: UUID = UUID()
         var yearlyIncome: Float = 0
         var monthlyIncome: Float = 0
         var remainingIncome: Float = 0
         var remainingIncomeFraction: Float = 0
         var isGrossIncome: Bool = true
-        var expenseContainers: [ExpenseContainer] = []
         
     }
     
 
     var data: Data {
-        Data(yearlyIncome: yearlyIncome, monthlyIncome: monthlyIncome, remainingIncome: remainingIncome, remainingIncomeFraction: remainingIncomeFraction, isGrossIncome: isGrossIncome, expenseContainers: expenseContainers)
+        Data(yearlyIncome: yearlyIncome, monthlyIncome: monthlyIncome, remainingIncome: remainingIncome, remainingIncomeFraction: remainingIncomeFraction, isGrossIncome: isGrossIncome)
     }
     
     ///data initializer
     init(data: Data){
-        id = data.id
         yearlyIncome = data.yearlyIncome
         monthlyIncome = data.monthlyIncome
         remainingIncome = data.remainingIncome
         remainingIncomeFraction = data.remainingIncomeFraction
         isGrossIncome = data.isGrossIncome
-        expenseContainers = data.expenseContainers
     }
     
     ///updates all BudgetInformation
@@ -72,31 +64,10 @@ extension BudgetInformation {
         remainingIncome = data.remainingIncome
         remainingIncomeFraction = data.remainingIncomeFraction
         isGrossIncome = data.isGrossIncome
-        expenseContainers = data.expenseContainers
-        updateAllIncome()
+        //updateAllIncome()
         
     }
 
-    ///updates remaining income from all expense categories and sets their relative total
-    mutating func updateAllIncome() -> Void{
-        self.remainingIncome = self.monthlyIncome
-        
-        for i in 0...self.expenseContainers.count-1{
-            if (!expenseContainers[i].expenses.isEmpty){
-                
-                for expense in expenseContainers[i].expenses{
-                    self.remainingIncome -= expense.cost
-                }
-                
-                self.remainingIncomeFraction = remainingIncome / monthlyIncome
-            }
-            
-            self.expenseContainers[i].setRelativeTotal(monthlyIncome: monthlyIncome)
-            
-        }
-        
-
-    }
     
 //    mutating func updateRemainingIncome(from container: ExpenseContainer) -> Void{
 //        if (!container.expenses.isEmpty){
@@ -115,6 +86,6 @@ extension BudgetInformation {
 
 extension BudgetInformation{
     
-    static let sampleData: BudgetInformation = BudgetInformation(yearlyIncome: 100000, isGrossIncome: true, expenseContainers: ExpenseContainer.sampleData)
+    static let sampleData: BudgetInformation = BudgetInformation(yearlyIncome: 100000, isGrossIncome: true)
     
 }

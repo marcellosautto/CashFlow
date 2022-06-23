@@ -13,7 +13,7 @@ struct SignInView: View {
     
     @Binding var user: User
     
-    @EnvironmentObject var viewModel: AppViewModel
+    @EnvironmentObject var authViewModel: AuthViewModel
     
     let bgColor: Color = Color(red: 0.451, green: 0.749, blue: 0.631) // #73bfa1
     let textFieldBgColor: Color = Color(red: 0.9, green: 0.9, blue: 0.9)
@@ -46,7 +46,7 @@ struct SignInView: View {
                         return
                     }
                     
-                    viewModel.signIn(email: user.email, password: user.password)
+                    authViewModel.signIn(email: user.email, password: user.password)
                 }, label: {
                     Text("Sign In")
                         .frame(width: 200, height: 50)
@@ -55,7 +55,7 @@ struct SignInView: View {
                         .cornerRadius(10.0)
                 })
                 
-                NavigationLink("Create Account", destination: SignUpView(user: $user).environmentObject(viewModel))
+                NavigationLink("Create Account", destination: SignUpView(user: $user).environmentObject(authViewModel))
                     .padding()
                     .foregroundColor(Color.blue)
             }
@@ -74,6 +74,6 @@ struct SignInView_Previews: PreviewProvider {
     
     static var previews: some View {
         SignInView(user: .constant(User.sampleUser))
-            .environmentObject(AppViewModel())
+            .environmentObject(AuthViewModel())
     }
 }

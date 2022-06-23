@@ -7,167 +7,74 @@
 
 import SwiftUI
 import Firebase
+import FirebaseDatabase
 
 class AppViewModel: ObservableObject {
     
-    //MARK: AUTHENTICATION
-    
-    @Published var signedIn = false
+    @Published var budgetInformation = BudgetInformation(data: BudgetInformation.sampleData.data)
+    @Published var expenseContainers = [ExpenseContainer]()
     
     let auth = Auth.auth()
-    let db = Firestore.firestore()
+    let dbref = Database.database().reference()
+    
     
     init(){
         importUserData()
     }
     
-    var isSignedIn: Bool{
-        return auth.currentUser != nil
-    }
-    
-    func signIn(email: String, password: String){
-        auth.signIn(withEmail: email, password: password) {
-            [weak self] result, error in
-            guard result != nil, error == nil else{
-                return
-            }
-            
-            DispatchQueue.main.async {
-                self?.signedIn = true
-            }
-        }
-    }
-    
-    func signUp(email: String, password: String){
-        auth.createUser(withEmail: email, password: password) {
-            [weak self] result, error in
-            guard result != nil, error == nil else{
-                return
-            }
-            
-            DispatchQueue.main.async {
-                self?.signedIn = true
-            }
-        }
-        
-        db.collection("users").addDocument(data:["email":email, "password": password])
-    }
-    
-    func signOut() {
-        try? auth.signOut()
-        
-        self.signedIn = false
-    }
     
     //MARK: ON LOAD HANDLER
     
-    let loadDataQueue = OperationQueue()
-    
     func importUserData(){
         
-        let budgetInfoCollection = db.collection("users").document(User.sampleUser.id).collection("budgetinformation")
-        getBudgetInformation(budgetInfoCollection: budgetInfoCollection)
-        
-//        let budgetInfoOperation = BudgetInformationImportOperation(budgetInformationCollection: budgetInfoCollection)
-//        let expenseContainerOperation = Operation()
-//        let expensesOperation = Operation()
-//
-//        budgetInfoOperation.addDependency(expenseContainerOperation)
-//        expenseContainerOperation.addDependency(expensesOperation)
-//
-//        loadDataQueue.addOperations([budgetInfoOperation, expenseContainerOperation, expensesOperation], waitUntilFinished: true)
-//
-//        budgetInfoOperation.completionBlock = {
-//            print("budget info import complete")
-//        }
-//
-//        expenseContainerOperation.completionBlock = {
-//            print("expense container import complete")
-//        }
-//
-//        expensesOperation.completionBlock = {
-//            print("expenses import complete")
-//        }
-    }
-    
-    
-    //MARK: BUDGET INFORMATION
-    
-    @Published var budgetInformation = [BudgetInformation]()
-    @Published var expenseContainers = [ExpenseContainer]()
-    @Published var expenses = [Expense]()
-    
-    let queue = DispatchQueue(label: "com.cashflow.queue", attributes: .concurrent)
-    
-    
-    func getBudgetInformation(budgetInfoCollection: CollectionReference){
-        
         //let budgetInfoCollection = db.collection("users").document(User.sampleUser.id).collection("budgetinformation")
+        //getBudgetInformation(budgetInfoCollection: budgetInfoCollection)
         
-        //var expenseContainers = [ExpenseContainer]()
-        
-        budgetInfoCollection.getDocuments { snapShot, error in
-            if error == nil {
-                DispatchQueue.main.async { //[weak self] in
-                    
-                    self.budgetInformation = snapShot!.documents.map { doc in
-                        
-                        self.getExpenseContainers(expenseContainerCollection: doc["expenseContainers"] as? CollectionReference ?? budgetInfoCollection.document(doc.documentID).collection("expenseContainers"))
-                        
-                                            
-                        return BudgetInformation(yearlyIncome: doc["yearlyIncome"] as? Float ?? 0, isGrossIncome: Bool(doc["isGrossIncome"] as? String ?? "true")!, expenseContainers: self.expenseContainers)
-                    }
-                    
-                    print("budget information")
-                }
-            }
-        }
-        
-    }
-    
-    
-    
-    
-    func getExpenseContainers(expenseContainerCollection: CollectionReference){
-        
-        
-        expenseContainerCollection.getDocuments { snapShot, error in
-            if error == nil {
-                DispatchQueue.main.async {
-                    self.expenseContainers = snapShot!.documents.map { doc in
-                        
-                       self.getExpenses(expenseCollection: doc["expenses"] as? CollectionReference ?? expenseContainerCollection.document(doc.documentID).collection("expenses"))
-                        
-                       //  repeat{}while(self.expenses.isEmpty) //replace with a delay that doesnt crash the app
-                        
-                        return ExpenseContainer(title: doc["title"] as? String ?? "", description: doc["description"] as? String ?? "", expenses: self.expenses, theme: Theme(rawValue: doc["theme"] as? String ?? "")!)
-                    }
-                    print("expense containers")
-                }
+        dbref.child("users/\(auth.currentUser!.uid)").getData(completion:  { error, snapshot in
+          guard error == nil else {
+            print(error!.localizedDescription)
+            return;
+          }
+            let data = snapshot?.value as? NSDictionary
+            let budgetInfoObject = data?["budgetInformation"] as? NSDictionary //budget information
+            let expenseContainerObject = data?["expenseContainers"] as? NSArray //expense containers
+            
+            //print(budgetInfoObject)
+            //print(expenseContainerObject)
+            
+            self.budgetInformation = BudgetInformation(yearlyIncome: budgetInfoObject?["yearlyIncome"] as? Float ?? 0, isGrossIncome: budgetInfoObject?["isGrossIncome"] as? Bool ?? true)
+            
+            for container_key in 0..<expenseContainerObject!.count {
+
+                let container = expenseContainerObject?[container_key] as? NSDictionary //current expense container
+
                 
-            }
-        }
-        
-    }
-    
-    func getExpenses(expenseCollection: CollectionReference){
-        
-        
-        expenseCollection.getDocuments { snapShot, error in
-            if error == nil {
-                DispatchQueue.main.async { //[weak self] in
-                    
-                    self.expenses = snapShot!.documents.map { doc in
-                        
-                        return Expense(name: doc["name"] as? String ?? "", cost: doc["cost"] as? Float ?? 0)
-                    }
-                    
-                    print("expenses")
+                let expenses = container?["expenses"] as? NSArray //expenses in current container
+                var expensesAsClassObject = [Expense]() //array of expense objects
+
+                for expense_key in 0..<expenses!.count{
+
+                    let expense = expenses?[expense_key] as? NSDictionary //expense array
+
+                    expensesAsClassObject.append(Expense(name: expense?["name"] as? String ?? "", cost: expense?["cost"] as? Float ?? 0))
+
                 }
+
+                self.expenseContainers.append(ExpenseContainer(title: container?["title"] as? String ?? "", description: container?["description"] as? String ?? "", expenses: expensesAsClassObject, theme: Theme(rawValue: container?["theme"] as? String ?? "indigo")!))
+
+
             }
             
-        }
+            
+        });
+        
+        print(budgetInformation)
+        print(expenseContainers)
+        
         
     }
+    
+    
+
     
 }

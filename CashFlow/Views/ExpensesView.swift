@@ -115,6 +115,6 @@ struct ExpensesView: View {
 struct ExpensesView_Previews: PreviewProvider {
     static var previews: some View {
         ExpensesView(budgetData: .constant(BudgetInformation.sampleData),
-                     expenseContainer: .constant(BudgetInformation.sampleData.expenseContainers[0]))
+                     expenseContainer: .constant(User.sampleUser.expenseContainers[0]))
     }
 }
