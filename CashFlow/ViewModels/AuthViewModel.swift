@@ -12,7 +12,7 @@ import FirebaseDatabase
 class AuthViewModel: ObservableObject {
     
     //MARK: AUTHENTICATION
-    
+    @Published var user = User(data: User.sampleUser.data)
     @Published var signedIn = false
     
     let auth = Auth.auth()
@@ -45,13 +45,13 @@ class AuthViewModel: ObservableObject {
             
             DispatchQueue.main.async {
                 self?.signedIn = true
+                self?.dbref.child("users").child(self?.auth.currentUser!.uid as! String).setValue( //this probably needs to be addressed at some point
+                    ["email": email, "password": password]
+                )
             }
         }
         
-        //db.collection("users").addDocument(data:["email":email, "password": password])
-        
-        self.dbref.child("users").child(auth.currentUser!.uid).setValue(
-            ["email": email, "password": password])
+
     }
     
     func signOut() {

@@ -14,8 +14,6 @@ struct CashFlowApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     
     @StateObject private var authViewModel: AuthViewModel = AuthViewModel()
-    @StateObject private var appViewModel: AppViewModel = AppViewModel()
-    
     @State var user: User = User.sampleUser
     
     var bgUIColor = UIColor(red: 0.94, green: 0.94, blue: 0.94, alpha: 1) 
@@ -29,13 +27,10 @@ struct CashFlowApp: App {
             NavigationView{
                 RouterView(user: $user)
                     .environmentObject(authViewModel)
-                    .environmentObject(appViewModel)
             }
             .onAppear{
                 authViewModel.signedIn = authViewModel.isSignedIn
             }
-            
-            
             
         }
         

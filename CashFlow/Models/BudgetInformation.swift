@@ -64,7 +64,7 @@ extension BudgetInformation {
         remainingIncome = data.remainingIncome
         remainingIncomeFraction = data.remainingIncomeFraction
         isGrossIncome = data.isGrossIncome
-        //updateAllIncome()
+        
         
     }
 

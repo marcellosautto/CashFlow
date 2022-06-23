@@ -16,6 +16,16 @@ struct User{
     var budgetInformation: BudgetInformation
     var expenseContainers: [ExpenseContainer]
     
+    init(id: String, email: String, password: String, budgetInformation: BudgetInformation, expenseContainers: [ExpenseContainer]){
+        self.id = id
+        self.email = email
+        self.password = password
+        self.budgetInformation = budgetInformation
+        self.expenseContainers = expenseContainers
+        
+        updateAllIncome()
+    }
+    
 }
 
 extension User{
@@ -24,6 +34,29 @@ extension User{
         var email: String = "guest"
         var password: String = ""
     }
+    
+    struct Data {
+        let id: String = UUID().uuidString
+        var email: String = "john@gmail.com"
+        var password: String = "password"
+        var budgetInformation: BudgetInformation = BudgetInformation.sampleData
+        var expenseContainers: [ExpenseContainer] = [ExpenseContainer]()
+    }
+    
+    var data: Data {
+        Data(email: email, password: password, budgetInformation: budgetInformation, expenseContainers: expenseContainers)
+    }
+    
+    init(data: Data){
+        id = data.id
+        email = data.email
+        password = data.password
+        budgetInformation = data.budgetInformation
+        expenseContainers = data.expenseContainers
+        
+        updateAllIncome()
+    }
+    
     
     ///updates remaining income from all expense categories and sets their relative total
     mutating func updateAllIncome() -> Void{
@@ -42,11 +75,9 @@ extension User{
             self.expenseContainers[i].setRelativeTotal(monthlyIncome: self.budgetInformation.monthlyIncome)
             
         }
-        
-
     }
 }
 
 extension User{
-    static let sampleUser = User(id: "K3VaHcDLLkVnIX64HeBX", email: "user@email.com", password: "password", budgetInformation: BudgetInformation.sampleData, expenseContainers: ExpenseContainer.sampleData)
+    static let sampleUser = User(id: "zCKbunsJArhGvXyqgXa44uHfysJ2", email: "user@email.com", password: "password", budgetInformation: BudgetInformation.sampleData, expenseContainers: ExpenseContainer.sampleData)
 }

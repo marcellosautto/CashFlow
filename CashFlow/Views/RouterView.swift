@@ -10,14 +10,15 @@ import Firebase
 
 struct RouterView: View {
     
-    @EnvironmentObject var appViewModel: AppViewModel
     @EnvironmentObject var authViewModel: AuthViewModel
+    @StateObject private var appViewModel: AppViewModel = AppViewModel()
     
     @Binding var user: User
     
     var body: some View {
         
         if authViewModel.isSignedIn {
+            
             HomeView(user: $user)
                 .environmentObject(authViewModel)
                 .environmentObject(appViewModel)
@@ -25,7 +26,6 @@ struct RouterView: View {
         else{
             SignInView(user: $user)
                 .environmentObject(authViewModel)
-                .environmentObject(appViewModel)
         }
     }
     
@@ -34,6 +34,6 @@ struct RouterView: View {
 struct RouterView_Previews: PreviewProvider {
     static var previews: some View {
         RouterView(user: .constant(User.sampleUser))
-            .environmentObject(AppViewModel())
+            .environmentObject(AuthViewModel())
     }
 }

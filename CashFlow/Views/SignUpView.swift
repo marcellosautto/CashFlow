@@ -67,6 +67,6 @@ struct SignUpView: View {
 struct SignUpView_Previews: PreviewProvider {
     static var previews: some View {
         SignUpView(user: .constant(User.sampleUser))
-            .environmentObject(AppViewModel())
+            .environmentObject(AuthViewModel())
     }
 }
