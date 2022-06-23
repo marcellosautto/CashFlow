@@ -10,7 +10,7 @@ import Firebase
 
 struct User{
     
-    let id: UUID = UUID()
+    let id: String
     var email: String
     var password: String
     
@@ -25,5 +25,5 @@ extension User{
 }
 
 extension User{
-    static let sampleUser = User(email: "user@email.com", password: "password")
+    static let sampleUser = User(id: "K3VaHcDLLkVnIX64HeBX", email: "user@email.com", password: "password")
 }

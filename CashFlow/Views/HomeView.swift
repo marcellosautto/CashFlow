@@ -51,6 +51,11 @@ struct HomeView: View {
                                 .font(.headline)
                         })
                     }
+                    .sheet(isPresented: $isPresentingEditBudgetView){
+                        NavigationView{
+                            BudgetInformationEditView().environmentObject(viewModel)
+                        }
+                    }
                     
                     
                 }

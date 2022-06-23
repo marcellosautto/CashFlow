@@ -9,8 +9,9 @@ import Foundation
 
 //Stores all user budget information
 
-struct BudgetInformation{
+struct BudgetInformation: Identifiable{
     
+    let id: UUID
     var yearlyIncome: Float
     var monthlyIncome: Float
     var remainingIncome: Float
@@ -18,7 +19,8 @@ struct BudgetInformation{
     var isGrossIncome: Bool
     var expenseContainers: [ExpenseContainer]
     
-    init(yearlyIncome: Float, isGrossIncome: Bool, expenseContainers: [ExpenseContainer]) {
+    init(id: UUID = UUID(), yearlyIncome: Float, isGrossIncome: Bool, expenseContainers: [ExpenseContainer]) {
+        self.id = id
         self.yearlyIncome = yearlyIncome
         self.monthlyIncome = yearlyIncome / 12.0
         self.remainingIncome = monthlyIncome
@@ -27,7 +29,7 @@ struct BudgetInformation{
         self.remainingIncomeFraction = 1.0
         
         
-        updateAllIncome()
+        //updateAllIncome()
     }
     
  
@@ -37,6 +39,7 @@ extension BudgetInformation {
     
     ///Data is used for handeling CRUD operations
     struct Data {
+        var id: UUID = UUID()
         var yearlyIncome: Float = 0
         var monthlyIncome: Float = 0
         var remainingIncome: Float = 0
@@ -53,6 +56,7 @@ extension BudgetInformation {
     
     ///data initializer
     init(data: Data){
+        id = data.id
         yearlyIncome = data.yearlyIncome
         monthlyIncome = data.monthlyIncome
         remainingIncome = data.remainingIncome

@@ -19,6 +19,7 @@
 		4B2F2114284C295F0092F677 /* VisualizedIncomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2F2113284C295F0092F677 /* VisualizedIncomeView.swift */; };
 		4B2F2116284C2D9F0092F677 /* BudgetInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2F2115284C2D9F0092F677 /* BudgetInformation.swift */; };
 		4B2F2118284C2E250092F677 /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2F2117284C2E250092F677 /* Expense.swift */; };
+		4B3C4D50285D3BC20028E648 /* BudgetInformationEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3C4D4F285D3BC20028E648 /* BudgetInformationEditView.swift */; };
 		4B486997284DA37E0082818F /* ExpensesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B486996284DA37E0082818F /* ExpensesView.swift */; };
 		4B486999284DA48F0082818F /* ExpensesEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B486998284DA48F0082818F /* ExpensesEditView.swift */; };
 		4B7CD5AA285AE26300F9D448 /* RouterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B7CD5A9285AE26300F9D448 /* RouterView.swift */; };
@@ -69,6 +70,7 @@
 		4B2F2113284C295F0092F677 /* VisualizedIncomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualizedIncomeView.swift; sourceTree = "<group>"; };
 		4B2F2115284C2D9F0092F677 /* BudgetInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetInformation.swift; sourceTree = "<group>"; };
 		4B2F2117284C2E250092F677 /* Expense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
+		4B3C4D4F285D3BC20028E648 /* BudgetInformationEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetInformationEditView.swift; sourceTree = "<group>"; };
 		4B486996284DA37E0082818F /* ExpensesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesView.swift; sourceTree = "<group>"; };
 		4B486998284DA48F0082818F /* ExpensesEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesEditView.swift; sourceTree = "<group>"; };
 		4B7CD5A9285AE26300F9D448 /* RouterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterView.swift; sourceTree = "<group>"; };
@@ -194,6 +196,7 @@
 			isa = PBXGroup;
 			children = (
 				4B2F20E8284C23E90092F677 /* HomeView.swift */,
+				4B3C4D4F285D3BC20028E648 /* BudgetInformationEditView.swift */,
 				4B2F2113284C295F0092F677 /* VisualizedIncomeView.swift */,
 				4B486996284DA37E0082818F /* ExpensesView.swift */,
 				4B486998284DA48F0082818F /* ExpensesEditView.swift */,
@@ -359,6 +362,7 @@
 				4B80C5B0285AA23C0060F935 /* User.swift in Sources */,
 				4BF41B572857E5F60035840F /* ExpenseContainer.swift in Sources */,
 				4B217A292858FA0E0084805F /* CardView.swift in Sources */,
+				4B3C4D50285D3BC20028E648 /* BudgetInformationEditView.swift in Sources */,
 				4B2F2114284C295F0092F677 /* VisualizedIncomeView.swift in Sources */,
 				4B2F2116284C2D9F0092F677 /* BudgetInformation.swift in Sources */,
 				4BF41B5B2857E9910035840F /* Theme.swift in Sources */,
