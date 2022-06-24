@@ -10,9 +10,9 @@ import Firebase
 
 struct HomeView: View {
     
-    @EnvironmentObject var authViewModel: AuthViewModel
-    @EnvironmentObject var appViewModel: AppViewModel
     
+    @EnvironmentObject var authViewModel: AuthViewModel
+    @StateObject private var appViewModel: AppViewModel = AppViewModel()
     
     
     @State var modifiedBudgetData = BudgetInformation.Data()
@@ -136,7 +136,6 @@ struct HomeView_Previews: PreviewProvider {
         NavigationView{
             HomeView(user: .constant(User.sampleUser))
                 .environmentObject(AuthViewModel())
-                .environmentObject(AppViewModel())
         }
         
     }

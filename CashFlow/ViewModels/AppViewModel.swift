@@ -21,6 +21,7 @@ class AppViewModel: ObservableObject {
     init(){
         
         guard auth.currentUser != nil else {
+            print("Error: current user not found")
             return
         }
         

@@ -11,7 +11,6 @@ import Firebase
 struct RouterView: View {
     
     @EnvironmentObject var authViewModel: AuthViewModel
-    @StateObject private var appViewModel: AppViewModel = AppViewModel()
     
     @Binding var user: User
     
@@ -21,7 +20,6 @@ struct RouterView: View {
             
             HomeView(user: $user)
                 .environmentObject(authViewModel)
-                .environmentObject(appViewModel)
         }
         else{
             SignInView(user: $user)
