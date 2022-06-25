@@ -15,16 +15,16 @@ struct BudgetInformationEditView: View {
         List {
             Section("Budget"){
                     VStack{
-                        Text("Annual Income: $\(appViewModel.budgetInformation.yearlyIncome, specifier: "%.2f")")
-                        Text("Monthly Income: $\(appViewModel.budgetInformation.monthlyIncome, specifier: "%.2f")")
-                        Text("Remaining Income: $\(appViewModel.budgetInformation.remainingIncome, specifier: "%.2f")")
-                        Text("Remaining Income Fraction: \(appViewModel.budgetInformation.remainingIncomeFraction, specifier: "%.0f") / 1")
+                        Text("Annual Income: $\(appViewModel.user.budgetInformation.yearlyIncome, specifier: "%.2f")")
+                        Text("Monthly Income: $\(appViewModel.user.budgetInformation.monthlyIncome, specifier: "%.2f")")
+                        Text("Remaining Income: $\(appViewModel.user.budgetInformation.remainingIncome, specifier: "%.2f")")
+                        Text("Remaining Income Fraction: \(appViewModel.user.budgetInformation.remainingIncomeFraction, specifier: "%.0f") / 1")
 
                         
                     }
                     
                     VStack{
-                        ForEach(appViewModel.expenseContainers){ container in
+                        ForEach(appViewModel.user.expenseContainers){ container in
                             Text("Title: \(container.title)")
                             Text("Description: \(container.description)")
                             Text("Total: $\(container.total, specifier: "%.2f")")

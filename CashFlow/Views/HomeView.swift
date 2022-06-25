@@ -37,9 +37,9 @@ struct HomeView: View {
                     .font(.title)
                 
                 ZStack{
-                    VisualizedIncomeView(budgetData: $user.budgetInformation)
+                    VisualizedIncomeView(budgetData: $appViewModel.user.budgetInformation)
                     
-                    Text("$\(user.budgetInformation.remainingIncome, specifier: "%.2f")")
+                    Text("$\(appViewModel.user.budgetInformation.remainingIncome, specifier: "%.2f")")
                         .foregroundStyle(textColor)
                         .font(.largeTitle)
                         .accessibilityLabel("Money remaining")
@@ -67,8 +67,8 @@ struct HomeView: View {
                 
                 List {
                     
-                    ForEach($user.expenseContainers){$container in
-                        NavigationLink(destination: ExpenseContainerView(budgetData: $user.budgetInformation, expenseContainerData: $container)){
+                    ForEach($appViewModel.user.expenseContainers){$container in
+                        NavigationLink(destination: ExpenseContainerView(budgetData: $appViewModel.user.budgetInformation, expenseContainerData: $container)){
                             CardView(expenseContainer: container)
                                 .frame(maxWidth: .infinity)
                                 
@@ -118,8 +118,8 @@ struct HomeView: View {
                         ToolbarItem(placement: .confirmationAction){
                             Button("Add"){
                                 let newContainer = ExpenseContainer(data: newExpenseContainerData)
-                                user.expenseContainers.append(newContainer)
-                                user.budgetInformation.updateBudgetInfo(from: user.budgetInformation.data)
+                                appViewModel.user.expenseContainers.append(newContainer)
+                                appViewModel.user.budgetInformation.updateBudgetInfo(from: appViewModel.user.budgetInformation.data)
                                 
                                 isPresentingNewExpenseCategoryView = false
                                 newExpenseContainerData = ExpenseContainer.Data()

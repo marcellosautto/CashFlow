@@ -11,6 +11,7 @@ import FirebaseDatabase
 
 class AppViewModel: ObservableObject {
     
+    @Published var user = User(data: User.sampleUser.data)
     @Published var budgetInformation = BudgetInformation(data: BudgetInformation.sampleData.data)
     @Published var expenseContainers = [ExpenseContainer]()
     
@@ -91,6 +92,8 @@ class AppViewModel: ObservableObject {
 
 
         }
+        
+        self.user = User(id: auth.currentUser!.uid, email: data?["email"] as? String ?? "guest", password: data?["password"] as? String ?? "guest", budgetInformation: self.budgetInformation, expenseContainers: self.expenseContainers)
     }
     
     
