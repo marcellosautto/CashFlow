@@ -37,9 +37,9 @@ extension User{
     
     struct Data {
         let id: String = UUID().uuidString
-        var email: String = "john@gmail.com"
-        var password: String = "password"
-        var budgetInformation: BudgetInformation = BudgetInformation.sampleData
+        var email: String = ""
+        var password: String = ""
+        var budgetInformation: BudgetInformation = BudgetInformation(data: BudgetInformation.Data())
         var expenseContainers: [ExpenseContainer] = [ExpenseContainer]()
     }
     
@@ -57,12 +57,21 @@ extension User{
         updateAllIncome()
     }
     
+    mutating func update(from data: User.Data){
+        email = data.email
+        password = data.password
+        budgetInformation = data.budgetInformation
+        expenseContainers = data.expenseContainers
+        
+        updateAllIncome()
+    }
+    
     
     ///updates remaining income from all expense categories and sets their relative total
     mutating func updateAllIncome() -> Void{
         self.budgetInformation.remainingIncome = self.budgetInformation.monthlyIncome
         
-        for i in 0...self.expenseContainers.count-1{
+        for i in 0..<self.expenseContainers.count{
             if (!expenseContainers[i].expenses.isEmpty){
                 
                 for expense in expenseContainers[i].expenses{

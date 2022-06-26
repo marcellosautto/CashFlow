@@ -14,14 +14,11 @@ struct HomeView: View {
     @EnvironmentObject var authViewModel: AuthViewModel
     @StateObject private var appViewModel: AppViewModel = AppViewModel()
     
-    
-    @State var modifiedBudgetData = BudgetInformation.Data()
+   // @State var modifiedBudgetData = BudgetInformation.sampleData
     @State var newExpenseContainerData = ExpenseContainer.Data()
     @State var isPresentingNewExpenseCategoryView: Bool = false
     @State var isPresentingEditBudgetView: Bool = false
-    
-    @Binding var user: User
-    
+        
     let textColor: Color = Color(red: 0.15, green: 0.15, blue: 0.15)
     let bgColor: Color = Color(red: 0.94, green: 0.94, blue: 0.94)
     
@@ -49,6 +46,7 @@ struct HomeView: View {
                             .frame(height: 130)
                         Button(action: {
                             isPresentingEditBudgetView = true
+                            //modifiedBudgetData = appViewModel.user.budgetInformation
                         }, label: {
                             Text("Edit")
                                 .font(.headline)
@@ -56,22 +54,46 @@ struct HomeView: View {
                     }
                     .sheet(isPresented: $isPresentingEditBudgetView){
                         NavigationView{
-                            BudgetInformationEditView().environmentObject(appViewModel)
+                            BudgetInformationEditView(budgetData: $appViewModel.user.budgetInformation)
+                                .toolbar{
+                                    
+                                    ToolbarItem(placement: .cancellationAction){
+                                        Button("Cancel"){
+                                            isPresentingEditBudgetView = false
+                                        }
+                                    }
+                                    
+                                    ToolbarItem(placement: .confirmationAction){
+                                        Button("Done"){
+                                            appViewModel.user.budgetInformation.updateBudgetInfo(from: appViewModel.user.budgetInformation.data)
+                                            appViewModel.user.updateAllIncome()
+                                            appViewModel.updateUserData()
+                                            
+                                            //modifiedBudgetData = appViewModel.user.budgetInformation
+                                            isPresentingEditBudgetView = false
+                                        }
+                                        
+                                    }
+                                    
+                                    
+                                    
+                                }
                         }
+ 
                     }
                     
                     
                 }
                 
-
+                
                 
                 List {
                     
                     ForEach($appViewModel.user.expenseContainers){$container in
-                        NavigationLink(destination: ExpenseContainerView(budgetData: $appViewModel.user.budgetInformation, expenseContainerData: $container)){
+                        NavigationLink(destination: ExpenseContainerView(budgetData: $appViewModel.user.budgetInformation, expenseContainerData: $container).environmentObject(appViewModel)){
                             CardView(expenseContainer: container)
                                 .frame(maxWidth: .infinity)
-                                
+                            
                         }
                         .listRowBackground(container.theme.mainColor)
                         
@@ -121,6 +143,9 @@ struct HomeView: View {
                                 appViewModel.user.expenseContainers.append(newContainer)
                                 appViewModel.user.budgetInformation.updateBudgetInfo(from: appViewModel.user.budgetInformation.data)
                                 
+                                
+                                appViewModel.updateUserData()
+                                
                                 isPresentingNewExpenseCategoryView = false
                                 newExpenseContainerData = ExpenseContainer.Data()
                             }
@@ -134,7 +159,7 @@ struct HomeView: View {
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView{
-            HomeView(user: .constant(User.sampleUser))
+            HomeView()
                 .environmentObject(AuthViewModel())
         }
         

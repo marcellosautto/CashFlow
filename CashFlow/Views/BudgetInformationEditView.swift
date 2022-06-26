@@ -9,48 +9,31 @@ import SwiftUI
 
 struct BudgetInformationEditView: View {
     
-    @EnvironmentObject var appViewModel: AppViewModel
+    @Binding var budgetData: BudgetInformation
     
     var body: some View {
-        List {
+        Form{
             Section("Budget"){
-                    VStack{
-                        Text("Annual Income: $\(appViewModel.user.budgetInformation.yearlyIncome, specifier: "%.2f")")
-                        Text("Monthly Income: $\(appViewModel.user.budgetInformation.monthlyIncome, specifier: "%.2f")")
-                        Text("Remaining Income: $\(appViewModel.user.budgetInformation.remainingIncome, specifier: "%.2f")")
-                        Text("Remaining Income Fraction: \(appViewModel.user.budgetInformation.remainingIncomeFraction, specifier: "%.0f") / 1")
-
+                VStack{
+                    
+                    Picker("Type", selection: $budgetData.isGrossIncome) {
+                        Text("Gross Income").tag(true)
+                        Text("Net Income").tag(false)
                         
                     }
                     
-                    VStack{
-                        ForEach(appViewModel.user.expenseContainers){ container in
-                            Text("Title: \(container.title)")
-                            Text("Description: \(container.description)")
-                            Text("Total: $\(container.total, specifier: "%.2f")")
-                            Text("Relative Total: \(container.relativeTotal, specifier: "%.2f")%")
-                            Text("Theme: \(container.theme.rawValue)")
-                            
-                            
-                            ForEach(container.expenses){ expense in
-                                Text("\(expense.name): $\(expense.cost, specifier: "%.2f")")
-                                    .font(.subheadline)
-                            }
-                            
-                            
-                            
-                        }
-                    }
-
+                    TextField("Annual Income: $", value: $budgetData.yearlyIncome, format: .currency(code: "USD"))
+                    
+                }
+                
             }
-            
         }
+        
     }
 }
 
 struct BudgetInformationEditView_Previews: PreviewProvider {
     static var previews: some View {
-        BudgetInformationEditView()
-            .environmentObject(AppViewModel())
+        BudgetInformationEditView(budgetData: .constant(BudgetInformation.sampleData))
     }
 }

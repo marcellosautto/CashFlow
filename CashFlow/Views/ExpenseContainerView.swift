@@ -16,13 +16,15 @@ struct ExpenseContainerView: View {
     @Binding var budgetData: BudgetInformation
     @Binding var expenseContainerData: ExpenseContainer
     
+    @EnvironmentObject var appViewModel: AppViewModel
+    
     
     //NOT YET IMPLEMENTED
     var bgUIColor = UIColor(red: 0.9, green: 0.95, blue: 0.95, alpha: 1.0)
     
     var body: some View {
         VStack{
-            ExpensesView(budgetData: $budgetData, expenseContainer: $expenseContainerData)
+            ExpensesView(budgetData: $budgetData, expenseContainer: $expenseContainerData).environmentObject(appViewModel)
         }
         .sheet(isPresented: $isPresentingEditView){
             NavigationView{
@@ -39,6 +41,8 @@ struct ExpenseContainerView: View {
                                 isPresentingEditView = false
                                 
                                 expenseContainerData.updateExpenseContainer(from: newExpenseContainerData)
+                                
+                                appViewModel.updateUserData()
                                 
                                 
                             }
@@ -64,5 +68,6 @@ struct ExpenseContainerView_Previews: PreviewProvider {
     static var previews: some View {
         ExpenseContainerView(budgetData: .constant(BudgetInformation.sampleData),
                              expenseContainerData: .constant(ExpenseContainer.sampleData[0]))
+        .environmentObject(AppViewModel())
     }
 }

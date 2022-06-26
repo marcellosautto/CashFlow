@@ -44,6 +44,29 @@ class AppViewModel: ObservableObject {
     
     func updateUserData(){
         
+        
+        //budget information
+        let budgetInfo: [String: Any] = ["yearlyIncome": user.budgetInformation.yearlyIncome as Float, "isGrossIncome": user.budgetInformation.isGrossIncome as Bool]
+        
+        var expenseContainers: [[String: Any]] = []
+        
+        //expense containers
+        for container in user.expenseContainers{
+            expenseContainers.append( ["title": container.title, "description": container.description, "theme": container.theme.rawValue, "expenses": container.expenses.map {["name": $0.name, "cost": $0.cost]as [String: Any]} as NSArray ])
+        }
+        
+        //user data block
+        let userDataUpdates: [String : Any] = ["email": user.email as String,
+                        "password": user.password as String,
+                        "budgetInformation": budgetInfo as NSDictionary,
+                        "expenseContainers": expenseContainers as NSArray
+        ]
+        
+        guard let user_id = dbref.child("users").child("\(auth.currentUser!.uid)").key else { return } //get user ID
+        let childUpdate = ["/users/\(user_id)": userDataUpdates]
+        
+        dbref.updateChildValues(childUpdate) //update user db info
+
     }
     
     func deleteUserData(){
@@ -59,6 +82,7 @@ class AppViewModel: ObservableObject {
           }
             let data = snapshot?.value as? NSDictionary
             
+            
             self.setUserData(data: data)
         });
         
@@ -72,6 +96,16 @@ class AppViewModel: ObservableObject {
         
         self.budgetInformation = BudgetInformation(yearlyIncome: budgetInfoObject?["yearlyIncome"] as? Float ?? 0, isGrossIncome: budgetInfoObject?["isGrossIncome"] as? Bool ?? true)
         
+        if (expenseContainerObject != nil){
+            getExpenseContainers(expenseContainerObject: expenseContainerObject)
+        }
+
+        
+        self.user = User(id: auth.currentUser!.uid, email: data?["email"] as? String ?? "guest", password: data?["password"] as? String ?? "guest", budgetInformation: self.budgetInformation, expenseContainers: self.expenseContainers)
+    }
+    
+    func getExpenseContainers(expenseContainerObject: NSArray?){
+        
         for container_key in 0..<expenseContainerObject!.count {
 
             let container = expenseContainerObject?[container_key] as? NSDictionary //current expense container
@@ -80,20 +114,21 @@ class AppViewModel: ObservableObject {
             let expenses = container?["expenses"] as? NSArray //expenses in current container
             var expensesAsClassObject = [Expense]() //array of expense objects
 
-            for expense_key in 0..<expenses!.count{
+            if(expenses != nil){
+                for expense_key in 0..<expenses!.count{
 
-                let expense = expenses?[expense_key] as? NSDictionary //expense array
+                    let expense = expenses?[expense_key] as? NSDictionary //expense array
 
-                expensesAsClassObject.append(Expense(name: expense?["name"] as? String ?? "", cost: expense?["cost"] as? Float ?? 0))
+                    expensesAsClassObject.append(Expense(name: expense?["name"] as? String ?? "", cost: expense?["cost"] as? Float ?? 0))
 
+                }
             }
+
 
             self.expenseContainers.append(ExpenseContainer(title: container?["title"] as? String ?? "", description: container?["description"] as? String ?? "", expenses: expensesAsClassObject, theme: Theme(rawValue: container?["theme"] as? String ?? "indigo")!))
 
 
         }
-        
-        self.user = User(id: auth.currentUser!.uid, email: data?["email"] as? String ?? "guest", password: data?["password"] as? String ?? "guest", budgetInformation: self.budgetInformation, expenseContainers: self.expenseContainers)
     }
     
     

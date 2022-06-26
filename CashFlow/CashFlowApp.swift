@@ -14,7 +14,7 @@ struct CashFlowApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     
     @StateObject private var authViewModel: AuthViewModel = AuthViewModel()
-    @State var user: User = User.sampleUser
+    //@State var user: User = User.sampleUser
     
     var bgUIColor = UIColor(red: 0.94, green: 0.94, blue: 0.94, alpha: 1) 
     
@@ -25,7 +25,7 @@ struct CashFlowApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationView{
-                RouterView(user: $user)
+                RouterView()
                     .environmentObject(authViewModel)
             }
             .onAppear{

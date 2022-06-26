@@ -24,7 +24,7 @@ extension Expense {
     struct Data {
         var id: UUID = UUID()
         var name: String = ""
-        var cost: Float = 50
+        var cost: Float = 0
         
     }
     

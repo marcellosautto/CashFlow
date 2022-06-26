@@ -12,17 +12,17 @@ struct RouterView: View {
     
     @EnvironmentObject var authViewModel: AuthViewModel
     
-    @Binding var user: User
+    //@Binding var user: User
     
     var body: some View {
         
         if authViewModel.isSignedIn {
             
-            HomeView(user: $user)
+            HomeView()
                 .environmentObject(authViewModel)
         }
         else{
-            SignInView(user: $user)
+            SignInView()
                 .environmentObject(authViewModel)
         }
     }
@@ -31,7 +31,7 @@ struct RouterView: View {
 
 struct RouterView_Previews: PreviewProvider {
     static var previews: some View {
-        RouterView(user: .constant(User.sampleUser))
+        RouterView()
             .environmentObject(AuthViewModel())
     }
 }
