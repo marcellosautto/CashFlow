@@ -51,7 +51,7 @@ extension BudgetInformation {
     ///data initializer
     init(data: Data){
         yearlyIncome = data.yearlyIncome
-        monthlyIncome = data.monthlyIncome
+        monthlyIncome =  yearlyIncome / 12.0
         remainingIncome = data.remainingIncome
         remainingIncomeFraction = data.remainingIncomeFraction
         isGrossIncome = data.isGrossIncome
@@ -60,12 +60,10 @@ extension BudgetInformation {
     ///updates all BudgetInformation
     mutating func updateBudgetInfo(from data: Data){
         yearlyIncome = data.yearlyIncome
-        monthlyIncome = data.monthlyIncome
+        monthlyIncome = yearlyIncome / 12.0
         remainingIncome = data.remainingIncome
         remainingIncomeFraction = data.remainingIncomeFraction
         isGrossIncome = data.isGrossIncome
-        
-        
     }
 
     

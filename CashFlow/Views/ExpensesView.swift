@@ -16,6 +16,8 @@ struct ExpensesView: View {
     @Binding var budgetData: BudgetInformation
     @Binding var expenseContainer: ExpenseContainer
     
+    @EnvironmentObject var appViewModel: AppViewModel
+    
     let textColor: Color = Color(red: 0.15, green: 0.15, blue: 0.15)
     
     
@@ -55,6 +57,8 @@ struct ExpensesView: View {
                                                 
                                                 expenseContainer.updateExpenseInfo(from: newExpenseData)
                                                 budgetData.updateBudgetInfo(from: budgetData.data)
+                                                appViewModel.user.updateAllIncome()
+                                                appViewModel.updateUserData()
                                                 
                                             }
                                         }
@@ -99,6 +103,9 @@ struct ExpensesView: View {
                                     expenseContainer.expenses.append(newExpense)
                                     expenseContainer.updateExpenseInfo(from: newExpenseData)
                                     budgetData.updateBudgetInfo(from: budgetData.data)
+                                    
+                                    appViewModel.user.updateAllIncome()
+                                    appViewModel.updateUserData()
                                     isPresentingNewExpenseView = false
                                     newExpenseData = Expense.Data()
                                 }
@@ -116,5 +123,6 @@ struct ExpensesView_Previews: PreviewProvider {
     static var previews: some View {
         ExpensesView(budgetData: .constant(BudgetInformation.sampleData),
                      expenseContainer: .constant(User.sampleUser.expenseContainers[0]))
+        .environmentObject(AppViewModel())
     }
 }

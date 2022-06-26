@@ -11,7 +11,7 @@ import Firebase
 
 struct SignInView: View {
     
-    @Binding var user: User
+    //@Binding var user: User
     
     @EnvironmentObject var authViewModel: AuthViewModel
     
@@ -26,14 +26,14 @@ struct SignInView: View {
                 .frame(width: 325, height: 325)
             
             VStack{
-                TextField("Email Address", text: $user.email, prompt: Text("Email"))
+                TextField("Email Address", text: $authViewModel.user.email, prompt: Text("Email"))
                     .disableAutocorrection(true)
                     .autocapitalization(.none)
                     .padding()
                     .background(textFieldBgColor)
                     .cornerRadius(5.0)
                 
-                SecureField("Password", text: $user.password, prompt: Text("Password"))
+                SecureField("Password", text: $authViewModel.user.password, prompt: Text("Password"))
                     .disableAutocorrection(true)
                     .autocapitalization(.none)
                     .padding()
@@ -42,11 +42,11 @@ struct SignInView: View {
                 
                 Button(action: {
                     
-                    guard !user.email.isEmpty, !user.password.isEmpty else {
+                    guard !authViewModel.user.email.isEmpty, !authViewModel.user.password.isEmpty else {
                         return
                     }
                     
-                    authViewModel.signIn(email: user.email, password: user.password)
+                    authViewModel.signIn(email: authViewModel.user.email, password: authViewModel.user.password)
                 }, label: {
                     Text("Sign In")
                         .frame(width: 200, height: 50)
@@ -55,7 +55,7 @@ struct SignInView: View {
                         .cornerRadius(10.0)
                 })
                 
-                NavigationLink("Create Account", destination: SignUpView(user: $user).environmentObject(authViewModel))
+                NavigationLink("Create Account", destination: SignUpView(user: $authViewModel.user).environmentObject(authViewModel))
                     .padding()
                     .foregroundColor(Color.blue)
             }
@@ -73,7 +73,7 @@ struct SignInView: View {
 struct SignInView_Previews: PreviewProvider {
     
     static var previews: some View {
-        SignInView(user: .constant(User.sampleUser))
+        SignInView()
             .environmentObject(AuthViewModel())
     }
 }

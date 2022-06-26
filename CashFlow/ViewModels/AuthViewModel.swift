@@ -12,7 +12,7 @@ import FirebaseDatabase
 class AuthViewModel: ObservableObject {
     
     //MARK: AUTHENTICATION
-    @Published var user = User(data: User.sampleUser.data)
+    @Published var user: User = User(data: User.Data())
     @Published var signedIn = false
     
     let auth = Auth.auth()
