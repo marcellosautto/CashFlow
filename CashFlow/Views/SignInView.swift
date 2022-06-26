@@ -55,7 +55,7 @@ struct SignInView: View {
                         .cornerRadius(10.0)
                 })
                 
-                NavigationLink("Create Account", destination: SignUpView(user: $authViewModel.user).environmentObject(authViewModel))
+                NavigationLink("Create Account", destination: SignUpView().environmentObject(authViewModel))
                     .padding()
                     .foregroundColor(Color.blue)
             }

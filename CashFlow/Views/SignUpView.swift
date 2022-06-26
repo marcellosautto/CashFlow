@@ -4,7 +4,7 @@ import Firebase
 
 struct SignUpView: View {
     
-    @Binding var user: User
+    @State var user: User = User(data: User.Data())
     
     @EnvironmentObject var authViewModel: AuthViewModel
     let bgColor: Color = Color(red: 0.451, green: 0.749, blue: 0.631) // #73bfa1
@@ -66,7 +66,7 @@ struct SignUpView: View {
 
 struct SignUpView_Previews: PreviewProvider {
     static var previews: some View {
-        SignUpView(user: .constant(User.sampleUser))
+        SignUpView()
             .environmentObject(AuthViewModel())
     }
 }
