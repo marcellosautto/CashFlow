@@ -13,11 +13,13 @@ struct SignUpView: View {
     
     var body: some View {
         VStack {
-            
+            Spacer()
+                .frame(height: 100)
             Text("Create an Account")
                 .font(.title)
             
             VStack{
+                
                 
                 TextField("Email Address", text: $user.email)
                     .disableAutocorrection(true)

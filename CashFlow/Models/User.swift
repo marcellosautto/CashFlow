@@ -88,5 +88,5 @@ extension User{
 }
 
 extension User{
-    static let sampleUser = User(id: "zCKbunsJArhGvXyqgXa44uHfysJ2", email: "user@email.com", password: "password", budgetInformation: BudgetInformation.sampleData, expenseContainers: ExpenseContainer.sampleData)
+    static let sampleUser = User(id: "zCKbunsJArhGvXyqgXa44uHfysJ2", email: "user@email.com", password: "password", budgetInformation: BudgetInformation(data: BudgetInformation.Data()), expenseContainers: [ExpenseContainer]())
 }

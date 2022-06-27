@@ -11,8 +11,8 @@ import FirebaseDatabase
 
 class AppViewModel: ObservableObject {
     
-    @Published var user = User(data: User.sampleUser.data)
-    @Published var budgetInformation = BudgetInformation(data: BudgetInformation.sampleData.data)
+    @Published var user = User(data: User.Data())
+    @Published var budgetInformation = BudgetInformation(data: BudgetInformation.Data())
     @Published var expenseContainers = [ExpenseContainer]()
     
     let auth = Auth.auth()
@@ -48,11 +48,9 @@ class AppViewModel: ObservableObject {
         //budget information
         let budgetInfo: [String: Any] = ["yearlyIncome": user.budgetInformation.yearlyIncome as Float, "isGrossIncome": user.budgetInformation.isGrossIncome as Bool]
         
-        var expenseContainers: [[String: Any]] = []
-        
         //expense containers
-        for container in user.expenseContainers{
-            expenseContainers.append( ["title": container.title, "description": container.description, "theme": container.theme.rawValue, "expenses": container.expenses.map {["name": $0.name, "cost": $0.cost]as [String: Any]} as NSArray ])
+        let expenseContainers: [[String: Any]] = user.expenseContainers.map {container in
+            return ["title": container.title, "description": container.description, "theme": container.theme.rawValue, "expenses": container.expenses.map {["name": $0.name, "cost": $0.cost]as [String: Any]} as NSArray ]
         }
         
         //user data block

@@ -14,11 +14,11 @@ struct HomeView: View {
     @EnvironmentObject var authViewModel: AuthViewModel
     @StateObject private var appViewModel: AppViewModel = AppViewModel()
     
-   // @State var modifiedBudgetData = BudgetInformation.sampleData
+    // @State var modifiedBudgetData = BudgetInformation.sampleData
     @State var newExpenseContainerData = ExpenseContainer.Data()
     @State var isPresentingNewExpenseCategoryView: Bool = false
     @State var isPresentingEditBudgetView: Bool = false
-        
+    
     let textColor: Color = Color(red: 0.15, green: 0.15, blue: 0.15)
     let bgColor: Color = Color(red: 0.94, green: 0.94, blue: 0.94)
     
@@ -79,15 +79,35 @@ struct HomeView: View {
                                     
                                 }
                         }
- 
+                        
                     }
                     
                     
                 }
                 
                 
-                
                 List {
+                    
+                    ///toggles sheet for creating a new expense category
+                    HStack{
+                        Spacer()
+                        Text("Categories")
+                            .font(.title3)
+                            .padding(.leading)
+                        Spacer()
+                        
+                        Button(action: {isPresentingNewExpenseCategoryView = true}){
+                            
+                            Image(systemName: "plus")
+                                .padding(.trailing)
+                        }
+                        
+                        
+                    }
+                    .listRowBackground(Color(red: 0.65, green: 0.65, blue: 0.65))
+                    .foregroundColor(Color.white)
+                    
+                    
                     
                     ForEach($appViewModel.user.expenseContainers){$container in
                         NavigationLink(destination: ExpenseContainerView(budgetData: $appViewModel.user.budgetInformation, expenseContainerData: $container).environmentObject(appViewModel)){
@@ -99,25 +119,8 @@ struct HomeView: View {
                         
                         
                         
+                        
                     }
-                    
-                }
-                .toolbar{
-                    
-                    ToolbarItem{
-                        ///toggles sheet for creating a new expense category
-                        Button(action: {isPresentingNewExpenseCategoryView = true}){
-                            Image(systemName: "plus")
-                        }
-                    }
-                    
-                    ToolbarItem(placement: .cancellationAction){
-                        Button("Sign Out"){
-                            authViewModel.signOut()
-                        }
-                    }
-                    
-                    
                     
                 }
                 

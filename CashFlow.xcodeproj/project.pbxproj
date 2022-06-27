@@ -21,6 +21,8 @@
 		4B2F2114284C295F0092F677 /* VisualizedIncomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2F2113284C295F0092F677 /* VisualizedIncomeView.swift */; };
 		4B2F2116284C2D9F0092F677 /* BudgetInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2F2115284C2D9F0092F677 /* BudgetInformation.swift */; };
 		4B2F2118284C2E250092F677 /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2F2117284C2E250092F677 /* Expense.swift */; };
+		4B2F3E532869579500A53C98 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2F3E522869579500A53C98 /* SettingsView.swift */; };
+		4B2F3E5528695A2200A53C98 /* InsightsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2F3E5428695A2200A53C98 /* InsightsView.swift */; };
 		4B3C4D50285D3BC20028E648 /* BudgetInformationEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3C4D4F285D3BC20028E648 /* BudgetInformationEditView.swift */; };
 		4B486997284DA37E0082818F /* ExpensesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B486996284DA37E0082818F /* ExpensesView.swift */; };
 		4B486999284DA48F0082818F /* ExpensesEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B486998284DA48F0082818F /* ExpensesEditView.swift */; };
@@ -73,6 +75,8 @@
 		4B2F2113284C295F0092F677 /* VisualizedIncomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualizedIncomeView.swift; sourceTree = "<group>"; };
 		4B2F2115284C2D9F0092F677 /* BudgetInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetInformation.swift; sourceTree = "<group>"; };
 		4B2F2117284C2E250092F677 /* Expense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
+		4B2F3E522869579500A53C98 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		4B2F3E5428695A2200A53C98 /* InsightsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightsView.swift; sourceTree = "<group>"; };
 		4B3C4D4F285D3BC20028E648 /* BudgetInformationEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetInformationEditView.swift; sourceTree = "<group>"; };
 		4B486996284DA37E0082818F /* ExpensesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesView.swift; sourceTree = "<group>"; };
 		4B486998284DA48F0082818F /* ExpensesEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesEditView.swift; sourceTree = "<group>"; };
@@ -188,6 +192,56 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		4B2F3E5628695AC300A53C98 /* Taskbar */ = {
+			isa = PBXGroup;
+			children = (
+				4B2F20E8284C23E90092F677 /* HomeView.swift */,
+				4B2F3E522869579500A53C98 /* SettingsView.swift */,
+				4B2F3E5428695A2200A53C98 /* InsightsView.swift */,
+			);
+			path = Taskbar;
+			sourceTree = "<group>";
+		};
+		4B2F3E5728695ADC00A53C98 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				4B2F2113284C295F0092F677 /* VisualizedIncomeView.swift */,
+				4BF41B582857E7C90035840F /* ThemeView.swift */,
+				4BF41B5C2857EB880035840F /* ThemePicker.swift */,
+				4B217A282858FA0E0084805F /* CardView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		4B2F3E5828695B2400A53C98 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				4B3C4D4F285D3BC20028E648 /* BudgetInformationEditView.swift */,
+				4B486996284DA37E0082818F /* ExpensesView.swift */,
+				4B486998284DA48F0082818F /* ExpensesEditView.swift */,
+				4BF41B5E2857EEAD0035840F /* ExpenseContainerView.swift */,
+				4B217A2A285954370084805F /* ExpenseContainerEditView.swift */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		4B2F3E5928695B3B00A53C98 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				4B7CD5A9285AE26300F9D448 /* RouterView.swift */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
+		4B2F3E5A28695B5A00A53C98 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				4B80C5AB285AA09A0060F935 /* SignUpView.swift */,
+				4B80C5AD285AA0A70060F935 /* SignInView.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
 		4B3C4D41285C18EF0028E648 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
@@ -200,19 +254,11 @@
 		4B80C5A9285A9FFB0060F935 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				4B2F20E8284C23E90092F677 /* HomeView.swift */,
-				4B3C4D4F285D3BC20028E648 /* BudgetInformationEditView.swift */,
-				4B2F2113284C295F0092F677 /* VisualizedIncomeView.swift */,
-				4B486996284DA37E0082818F /* ExpensesView.swift */,
-				4B486998284DA48F0082818F /* ExpensesEditView.swift */,
-				4BF41B582857E7C90035840F /* ThemeView.swift */,
-				4BF41B5C2857EB880035840F /* ThemePicker.swift */,
-				4BF41B5E2857EEAD0035840F /* ExpenseContainerView.swift */,
-				4B217A282858FA0E0084805F /* CardView.swift */,
-				4B217A2A285954370084805F /* ExpenseContainerEditView.swift */,
-				4B80C5AB285AA09A0060F935 /* SignUpView.swift */,
-				4B80C5AD285AA0A70060F935 /* SignInView.swift */,
-				4B7CD5A9285AE26300F9D448 /* RouterView.swift */,
+				4B2F3E5A28695B5A00A53C98 /* Auth */,
+				4B2F3E5928695B3B00A53C98 /* Navigation */,
+				4B2F3E5828695B2400A53C98 /* Features */,
+				4B2F3E5728695ADC00A53C98 /* Components */,
+				4B2F3E5628695AC300A53C98 /* Taskbar */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -376,8 +422,10 @@
 				4B217A2B285954370084805F /* ExpenseContainerEditView.swift in Sources */,
 				4B1F062528650BDF000F7759 /* AuthViewModel.swift in Sources */,
 				4BF41B592857E7C90035840F /* ThemeView.swift in Sources */,
+				4B2F3E5528695A2200A53C98 /* InsightsView.swift in Sources */,
 				4B80C5AE285AA0A70060F935 /* SignInView.swift in Sources */,
 				4B2F2118284C2E250092F677 /* Expense.swift in Sources */,
+				4B2F3E532869579500A53C98 /* SettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
