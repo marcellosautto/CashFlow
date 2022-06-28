@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4B0F6F5A286A5F700054D9FF /* NavView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0F6F59286A5F700054D9FF /* NavView.swift */; };
+		4B0F6F5C286A65D20054D9FF /* RealExpenseContainerPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0F6F5B286A65D20054D9FF /* RealExpenseContainerPicker.swift */; };
+		4B0F6F5E286A66A00054D9FF /* RealExpenseContainerPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0F6F5D286A66A00054D9FF /* RealExpenseContainerPickerView.swift */; };
 		4B1F06232864EE2E000F7759 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 4B1F06222864EE2E000F7759 /* FirebaseDatabase */; };
 		4B1F062528650BDF000F7759 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1F062428650BDF000F7759 /* AuthViewModel.swift */; };
 		4B217A292858FA0E0084805F /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B217A282858FA0E0084805F /* CardView.swift */; };
@@ -23,6 +26,10 @@
 		4B2F2118284C2E250092F677 /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2F2117284C2E250092F677 /* Expense.swift */; };
 		4B2F3E532869579500A53C98 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2F3E522869579500A53C98 /* SettingsView.swift */; };
 		4B2F3E5528695A2200A53C98 /* InsightsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2F3E5428695A2200A53C98 /* InsightsView.swift */; };
+		4B2F3E5C286A12D500A53C98 /* ExpenseLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2F3E5B286A12D500A53C98 /* ExpenseLogView.swift */; };
+		4B2F3E5E286A197000A53C98 /* RealExpense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2F3E5D286A197000A53C98 /* RealExpense.swift */; };
+		4B2F3E60286A1B1F00A53C98 /* ExpenseLogEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2F3E5F286A1B1F00A53C98 /* ExpenseLogEditView.swift */; };
+		4B30645A286B87AE0089EE35 /* RealExpenseCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B306459286B87AE0089EE35 /* RealExpenseCardView.swift */; };
 		4B3C4D50285D3BC20028E648 /* BudgetInformationEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3C4D4F285D3BC20028E648 /* BudgetInformationEditView.swift */; };
 		4B486997284DA37E0082818F /* ExpensesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B486996284DA37E0082818F /* ExpensesView.swift */; };
 		4B486999284DA48F0082818F /* ExpensesEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B486998284DA48F0082818F /* ExpensesEditView.swift */; };
@@ -59,6 +66,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4B0F6F59286A5F700054D9FF /* NavView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavView.swift; sourceTree = "<group>"; };
+		4B0F6F5B286A65D20054D9FF /* RealExpenseContainerPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealExpenseContainerPicker.swift; sourceTree = "<group>"; };
+		4B0F6F5D286A66A00054D9FF /* RealExpenseContainerPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealExpenseContainerPickerView.swift; sourceTree = "<group>"; };
 		4B1F062428650BDF000F7759 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		4B217A282858FA0E0084805F /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		4B217A2A285954370084805F /* ExpenseContainerEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseContainerEditView.swift; sourceTree = "<group>"; };
@@ -77,6 +87,10 @@
 		4B2F2117284C2E250092F677 /* Expense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
 		4B2F3E522869579500A53C98 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		4B2F3E5428695A2200A53C98 /* InsightsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightsView.swift; sourceTree = "<group>"; };
+		4B2F3E5B286A12D500A53C98 /* ExpenseLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseLogView.swift; sourceTree = "<group>"; };
+		4B2F3E5D286A197000A53C98 /* RealExpense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealExpense.swift; sourceTree = "<group>"; };
+		4B2F3E5F286A1B1F00A53C98 /* ExpenseLogEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseLogEditView.swift; sourceTree = "<group>"; };
+		4B306459286B87AE0089EE35 /* RealExpenseCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealExpenseCardView.swift; sourceTree = "<group>"; };
 		4B3C4D4F285D3BC20028E648 /* BudgetInformationEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetInformationEditView.swift; sourceTree = "<group>"; };
 		4B486996284DA37E0082818F /* ExpensesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesView.swift; sourceTree = "<group>"; };
 		4B486998284DA48F0082818F /* ExpensesEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesEditView.swift; sourceTree = "<group>"; };
@@ -188,6 +202,7 @@
 				4B2F2117284C2E250092F677 /* Expense.swift */,
 				4BF41B562857E5F60035840F /* ExpenseContainer.swift */,
 				4BF41B5A2857E9910035840F /* Theme.swift */,
+				4B2F3E5D286A197000A53C98 /* RealExpense.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -198,6 +213,7 @@
 				4B2F20E8284C23E90092F677 /* HomeView.swift */,
 				4B2F3E522869579500A53C98 /* SettingsView.swift */,
 				4B2F3E5428695A2200A53C98 /* InsightsView.swift */,
+				4B2F3E5B286A12D500A53C98 /* ExpenseLogView.swift */,
 			);
 			path = Taskbar;
 			sourceTree = "<group>";
@@ -209,6 +225,9 @@
 				4BF41B582857E7C90035840F /* ThemeView.swift */,
 				4BF41B5C2857EB880035840F /* ThemePicker.swift */,
 				4B217A282858FA0E0084805F /* CardView.swift */,
+				4B0F6F5B286A65D20054D9FF /* RealExpenseContainerPicker.swift */,
+				4B0F6F5D286A66A00054D9FF /* RealExpenseContainerPickerView.swift */,
+				4B306459286B87AE0089EE35 /* RealExpenseCardView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -221,6 +240,7 @@
 				4B486998284DA48F0082818F /* ExpensesEditView.swift */,
 				4BF41B5E2857EEAD0035840F /* ExpenseContainerView.swift */,
 				4B217A2A285954370084805F /* ExpenseContainerEditView.swift */,
+				4B2F3E5F286A1B1F00A53C98 /* ExpenseLogEditView.swift */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -229,6 +249,7 @@
 			isa = PBXGroup;
 			children = (
 				4B7CD5A9285AE26300F9D448 /* RouterView.swift */,
+				4B0F6F59286A5F700054D9FF /* NavView.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -407,13 +428,16 @@
 				4B80C5AC285AA09A0060F935 /* SignUpView.swift in Sources */,
 				4B7CD5AC285AE84A00F9D448 /* AppViewModel.swift in Sources */,
 				4B486999284DA48F0082818F /* ExpensesEditView.swift in Sources */,
+				4B0F6F5C286A65D20054D9FF /* RealExpenseContainerPicker.swift in Sources */,
 				4B7CD5AA285AE26300F9D448 /* RouterView.swift in Sources */,
 				4B2F20E9284C23E90092F677 /* HomeView.swift in Sources */,
+				4B0F6F5E286A66A00054D9FF /* RealExpenseContainerPickerView.swift in Sources */,
 				4BF41B5F2857EEAD0035840F /* ExpenseContainerView.swift in Sources */,
 				4B486997284DA37E0082818F /* ExpensesView.swift in Sources */,
 				4B2F20E7284C23E90092F677 /* CashFlowApp.swift in Sources */,
 				4B80C5B0285AA23C0060F935 /* User.swift in Sources */,
 				4BF41B572857E5F60035840F /* ExpenseContainer.swift in Sources */,
+				4B2F3E5E286A197000A53C98 /* RealExpense.swift in Sources */,
 				4B217A292858FA0E0084805F /* CardView.swift in Sources */,
 				4B3C4D50285D3BC20028E648 /* BudgetInformationEditView.swift in Sources */,
 				4B2F2114284C295F0092F677 /* VisualizedIncomeView.swift in Sources */,
@@ -423,8 +447,12 @@
 				4B1F062528650BDF000F7759 /* AuthViewModel.swift in Sources */,
 				4BF41B592857E7C90035840F /* ThemeView.swift in Sources */,
 				4B2F3E5528695A2200A53C98 /* InsightsView.swift in Sources */,
+				4B30645A286B87AE0089EE35 /* RealExpenseCardView.swift in Sources */,
+				4B2F3E5C286A12D500A53C98 /* ExpenseLogView.swift in Sources */,
 				4B80C5AE285AA0A70060F935 /* SignInView.swift in Sources */,
 				4B2F2118284C2E250092F677 /* Expense.swift in Sources */,
+				4B0F6F5A286A5F700054D9FF /* NavView.swift in Sources */,
+				4B2F3E60286A1B1F00A53C98 /* ExpenseLogEditView.swift in Sources */,
 				4B2F3E532869579500A53C98 /* SettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

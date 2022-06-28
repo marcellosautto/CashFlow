@@ -10,6 +10,7 @@ import Firebase
 
 struct RouterView: View {
     
+    @StateObject private var appViewModel: AppViewModel = AppViewModel()
     @EnvironmentObject var authViewModel: AuthViewModel
     
     //@Binding var user: User
@@ -17,8 +18,10 @@ struct RouterView: View {
     var body: some View {
         
         if authViewModel.isSignedIn {
-            NavView()
+            
+            HomeView()
                 .environmentObject(authViewModel)
+                .environmentObject(appViewModel)
         }
         else{
             SignInView()

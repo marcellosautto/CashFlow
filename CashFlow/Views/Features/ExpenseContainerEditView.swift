@@ -17,7 +17,7 @@ struct ExpenseContainerEditView: View {
                 TextField("Enter title...", text: $newExpenseContainerData.title)
             }
             Section("Description"){
-                TextField("Enter title...", text: $newExpenseContainerData.description)
+                TextField("Enter description...", text: $newExpenseContainerData.description)
             }
             Section("Theme"){
                 ThemePicker(selection: $newExpenseContainerData.theme)

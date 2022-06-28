@@ -12,7 +12,7 @@ struct HomeView: View {
     
     
     @EnvironmentObject var authViewModel: AuthViewModel
-    @StateObject private var appViewModel: AppViewModel = AppViewModel()
+    @EnvironmentObject var appViewModel: AppViewModel
     
     // @State var modifiedBudgetData = BudgetInformation.sampleData
     @State var newExpenseContainerData = ExpenseContainer.Data()
@@ -30,7 +30,7 @@ struct HomeView: View {
             
             VStack {
                 
-                Label("\(Date.now, format: .dateTime.month(.wide).day())", systemImage: "calendar")
+                Label("\(Date.now, format: .dateTime.month(.wide).day().year())", systemImage: "calendar")
                     .font(.title)
                 
                 ZStack{
@@ -109,8 +109,10 @@ struct HomeView: View {
                     
                     
                     
-                    ForEach($appViewModel.user.expenseContainers){$container in
-                        NavigationLink(destination: ExpenseContainerView(budgetData: $appViewModel.user.budgetInformation, expenseContainerData: $container).environmentObject(appViewModel)){
+                    ForEach($appViewModel.user.expenseContainers){ $container in
+                        NavigationLink(destination: ExpenseContainerView(budgetData: $appViewModel.user.budgetInformation, expenseContainerData: $container)
+                            .environmentObject(appViewModel))
+                        {
                             CardView(expenseContainer: container)
                                 .frame(maxWidth: .infinity)
                             
@@ -164,6 +166,7 @@ struct HomeView_Previews: PreviewProvider {
         NavigationView{
             HomeView()
                 .environmentObject(AuthViewModel())
+                .environmentObject(AppViewModel())
         }
         
     }

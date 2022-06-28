@@ -15,13 +15,16 @@ struct User{
     var password: String
     var budgetInformation: BudgetInformation
     var expenseContainers: [ExpenseContainer]
+    var realExpenses: [RealExpense]
     
-    init(id: String, email: String, password: String, budgetInformation: BudgetInformation, expenseContainers: [ExpenseContainer]){
+    init(id: String, email: String, password: String, budgetInformation: BudgetInformation, expenseContainers: [ExpenseContainer], realExpenses: [RealExpense]){
         self.id = id
         self.email = email
         self.password = password
         self.budgetInformation = budgetInformation
         self.expenseContainers = expenseContainers
+        self.realExpenses = realExpenses
+        
         
         updateAllIncome()
     }
@@ -41,10 +44,11 @@ extension User{
         var password: String = ""
         var budgetInformation: BudgetInformation = BudgetInformation(data: BudgetInformation.Data())
         var expenseContainers: [ExpenseContainer] = [ExpenseContainer]()
+        var realExpenses: [RealExpense] = [RealExpense]()
     }
     
     var data: Data {
-        Data(email: email, password: password, budgetInformation: budgetInformation, expenseContainers: expenseContainers)
+        Data(email: email, password: password, budgetInformation: budgetInformation, expenseContainers: expenseContainers, realExpenses: realExpenses)
     }
     
     init(data: Data){
@@ -53,6 +57,7 @@ extension User{
         password = data.password
         budgetInformation = data.budgetInformation
         expenseContainers = data.expenseContainers
+        realExpenses = data.realExpenses
         
         updateAllIncome()
     }
@@ -62,6 +67,7 @@ extension User{
         password = data.password
         budgetInformation = data.budgetInformation
         expenseContainers = data.expenseContainers
+        realExpenses = data.realExpenses
         
         updateAllIncome()
     }
@@ -88,5 +94,5 @@ extension User{
 }
 
 extension User{
-    static let sampleUser = User(id: "zCKbunsJArhGvXyqgXa44uHfysJ2", email: "user@email.com", password: "password", budgetInformation: BudgetInformation(data: BudgetInformation.Data()), expenseContainers: [ExpenseContainer]())
+    static let sampleUser = User(id: "zCKbunsJArhGvXyqgXa44uHfysJ2", email: "user@email.com", password: "password", budgetInformation: BudgetInformation(data: BudgetInformation.Data()), expenseContainers: [ExpenseContainer](), realExpenses: [RealExpense]())
 }
