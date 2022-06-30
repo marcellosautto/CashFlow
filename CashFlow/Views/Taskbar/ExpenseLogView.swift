@@ -10,9 +10,10 @@ import SwiftUI
 struct ExpenseLogView: View {
     
     //@State private var loggedExpenses: [RealExpense] = [RealExpense]()
-    
+    @State var containerIndex: Int = 0
     @State var newExpense = RealExpense.Data()
     @State var isPresentingAddRealExpenseSheet = false
+    
     
     @EnvironmentObject var appViewModel: AppViewModel
     
@@ -38,7 +39,7 @@ struct ExpenseLogView: View {
             }
             .sheet(isPresented: $isPresentingAddRealExpenseSheet){
                 NavigationView{
-                    ExpenseLogEditView(realExpense: $newExpense)
+                    ExpenseLogEditView(realExpense: $newExpense, containerIndex: $containerIndex)
                         .environmentObject(appViewModel)
                         .toolbar{
                             ToolbarItem(placement: .cancellationAction){
@@ -49,7 +50,11 @@ struct ExpenseLogView: View {
                             
                             ToolbarItem(placement: .confirmationAction){
                                 Button("Done"){
-                                    let newExpense = RealExpense(data: newExpense)
+                                    var newExpense = RealExpense(data: newExpense)
+                                    
+                                    newExpense.containerDescriptor.title = appViewModel.user.expenseContainers[containerIndex].title
+                                    
+                                    newExpense.containerDescriptor.theme = appViewModel.user.expenseContainers[containerIndex].theme
                                     
                                     
                                     appViewModel.user.realExpenses.append(newExpense)

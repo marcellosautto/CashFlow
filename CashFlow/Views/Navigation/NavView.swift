@@ -30,6 +30,7 @@ struct NavView: View {
                 }
             
             InsightsView()
+                .environmentObject(appViewModel)
                 .tabItem{
                     Text("Insights")
                     Image(systemName: "chart.line.uptrend.xyaxis")

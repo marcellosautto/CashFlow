@@ -19,7 +19,7 @@ struct CardView: View {
                 .font(.caption)
             Spacer()
             HStack{
-                Text("Total: $\(expenseContainer.total, specifier: "%.2f")")
+                Text("Estimate: $\(expenseContainer.total, specifier: "%.2f")")
                     .font(.caption)
                 Spacer()
                 Text("\(expenseContainer.relativeTotal, specifier: "%.2f")%")

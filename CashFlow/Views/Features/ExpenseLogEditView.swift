@@ -10,8 +10,8 @@ import SwiftUI
 struct ExpenseLogEditView: View {
     
     @Binding var realExpense: RealExpense.Data
+    @Binding var containerIndex: Int
     
-    @State var containerIndex: Int = 0
     
     @EnvironmentObject var appViewModel: AppViewModel
     
@@ -42,7 +42,7 @@ struct ExpenseLogEditView: View {
 
 struct ExpenseLogEditView_Previews: PreviewProvider {
     static var previews: some View {
-        ExpenseLogEditView(realExpense: .constant(RealExpense.sampleData[0].data))
+        ExpenseLogEditView(realExpense: .constant(RealExpense.sampleData[0].data), containerIndex: .constant(0))
             .environmentObject(AppViewModel())
     }
 }

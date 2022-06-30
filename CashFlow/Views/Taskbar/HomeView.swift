@@ -19,7 +19,7 @@ struct HomeView: View {
     @State var isPresentingNewExpenseCategoryView: Bool = false
     @State var isPresentingEditBudgetView: Bool = false
     
-    let textColor: Color = Color(red: 0.15, green: 0.15, blue: 0.15)
+    let textColor: Color = Color(red: 0.10, green: 0.10, blue: 0.10)
     let bgColor: Color = Color(red: 0.94, green: 0.94, blue: 0.94)
     
     
@@ -85,28 +85,30 @@ struct HomeView: View {
                     
                 }
                 
+                ///toggles sheet for creating a new expense category
+                HStack{
+                    Spacer()
+                    Text("Categories")
+                        .font(.title3)
+                        .padding()
+                        .padding(.leading, 50)
+                    Spacer()
+                    
+                    Button(action: {isPresentingNewExpenseCategoryView = true}){
+                        
+                        Image(systemName: "plus.circle")
+                    }
+                    .padding(.horizontal)
+                    
+                    
+                }
+                .background(Color(red: 0.81, green: 0.76, blue: 0.65))
+                //.border(Color(red: 0.35, green: 0.35, blue: 0.35))
+                .cornerRadius(5)
+                .padding(.horizontal)
+                .foregroundColor(textColor)
                 
                 List {
-                    
-                    ///toggles sheet for creating a new expense category
-                    HStack{
-                        Spacer()
-                        Text("Categories")
-                            .font(.title3)
-                            .padding(.leading)
-                        Spacer()
-                        
-                        Button(action: {isPresentingNewExpenseCategoryView = true}){
-                            
-                            Image(systemName: "plus")
-                                .padding(.trailing)
-                        }
-                        
-                        
-                    }
-                    .listRowBackground(Color(red: 0.65, green: 0.65, blue: 0.65))
-                    .foregroundColor(Color.white)
-                    
                     
                     
                     ForEach($appViewModel.user.expenseContainers){ $container in

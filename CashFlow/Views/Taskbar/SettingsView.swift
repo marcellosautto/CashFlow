@@ -10,19 +10,31 @@ import SwiftUI
 struct SettingsView: View {
     
     @EnvironmentObject var authViewModel: AuthViewModel
+    let bgColor: Color = Color(red: 0.94, green: 0.94, blue: 0.94)
     
     var body: some View {
         
-        VStack(spacing: 50){
-            Text("Settings")
-                .font(.title)
-            
-            Button("Sign Out"){
-                authViewModel.signOut()
+        ZStack{
+            bgColor.ignoresSafeArea(edges: .all)
+
+            VStack{
+                Text("Settings")
+                    .font(.title)
+                List{
+                    Label("\(authViewModel.user.email)", systemImage: "person.fill")
+                    Button("Sign Out"){
+                        authViewModel.signOut()
+                    }
+                    Button("Change Password"){
+                        
+                    }.foregroundColor(Color.red)
+                    
+                }
             }
             
-            Spacer()
         }
+        
+        
         
         
     }

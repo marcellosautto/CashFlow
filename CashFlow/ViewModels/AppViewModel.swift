@@ -160,6 +160,22 @@ class AppViewModel: ObservableObject {
         
     }
     
+    func getRealExpenseContainerDifference(container: ExpenseContainer) -> Float{
+        
+        var difference: Float = container.total
+        
+        for expense in user.realExpenses {
+            if (expense.containerDescriptor.title != container.title){
+                continue
+            }
+            
+            difference -= expense.cost
+            
+        }
+        
+        return difference
+    }
+    
     
 
     
