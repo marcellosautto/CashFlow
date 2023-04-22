@@ -11,9 +11,10 @@ import FirebaseDatabase
 
 class AppViewModel: ObservableObject {
     
-    @Published var user = User(data: User.sampleUser.data)
-    @Published var budgetInformation = BudgetInformation(data: BudgetInformation.sampleData.data)
-    @Published var expenseContainers = [ExpenseContainer]()
+    @Published var user = User(data: User.Data())
+    private var budgetInformation = BudgetInformation(data: BudgetInformation.Data())
+    private var expenseContainers = [ExpenseContainer]()
+    private var realExpenses = [RealExpense]()
     
     let auth = Auth.auth()
     let dbref = Database.database().reference()
@@ -48,18 +49,21 @@ class AppViewModel: ObservableObject {
         //budget information
         let budgetInfo: [String: Any] = ["yearlyIncome": user.budgetInformation.yearlyIncome as Float, "isGrossIncome": user.budgetInformation.isGrossIncome as Bool]
         
-        var expenseContainers: [[String: Any]] = []
-        
         //expense containers
-        for container in user.expenseContainers{
-            expenseContainers.append( ["title": container.title, "description": container.description, "theme": container.theme.rawValue, "expenses": container.expenses.map {["name": $0.name, "cost": $0.cost]as [String: Any]} as NSArray ])
+        let expenseContainers: [[String: Any]] = user.expenseContainers.map {container in
+            return ["title": container.title, "description": container.description, "theme": container.theme.rawValue, "expenses": container.expenses.map {["name": $0.name, "cost": $0.cost]as [String: Any]} as NSArray ]
+        }
+        
+        let realExpenses: [[String: Any]] = user.realExpenses.map {realExpense in
+            return ["name": realExpense.name, "cost": realExpense.cost, "containerDescriptor": ["title": realExpense.containerDescriptor.title, "theme": realExpense.containerDescriptor.theme.rawValue]  as NSDictionary]
         }
         
         //user data block
         let userDataUpdates: [String : Any] = ["email": user.email as String,
                         "password": user.password as String,
                         "budgetInformation": budgetInfo as NSDictionary,
-                        "expenseContainers": expenseContainers as NSArray
+                        "expenseContainers": expenseContainers as NSArray,
+                        "realExpenses": realExpenses as NSArray,
         ]
         
         guard let user_id = dbref.child("users").child("\(auth.currentUser!.uid)").key else { return } //get user ID
@@ -92,16 +96,29 @@ class AppViewModel: ObservableObject {
     func setUserData(data: NSDictionary?){
         let budgetInfoObject = data?["budgetInformation"] as? NSDictionary //budget information
         let expenseContainerObject = data?["expenseContainers"] as? NSArray //expense containers
-        
+        let realExpensesArray = data?["realExpenses"] as? NSArray //real expenses
         
         self.budgetInformation = BudgetInformation(yearlyIncome: budgetInfoObject?["yearlyIncome"] as? Float ?? 0, isGrossIncome: budgetInfoObject?["isGrossIncome"] as? Bool ?? true)
         
         if (expenseContainerObject != nil){
             getExpenseContainers(expenseContainerObject: expenseContainerObject)
         }
-
+        else{
+            print("Error importing expense containers")
+        }
         
-        self.user = User(id: auth.currentUser!.uid, email: data?["email"] as? String ?? "guest", password: data?["password"] as? String ?? "guest", budgetInformation: self.budgetInformation, expenseContainers: self.expenseContainers)
+        if (realExpensesArray != nil){
+            
+            getRealExpenses(realExpensesArray: realExpensesArray)
+
+        }
+        else{
+            print("Error importing real expenses")
+        }
+        
+        
+        
+        self.user = User(id: auth.currentUser!.uid, email: data?["email"] as? String ?? "guest", password: data?["password"] as? String ?? "guest", budgetInformation: self.budgetInformation, expenseContainers: self.expenseContainers, realExpenses: realExpenses)
     }
     
     func getExpenseContainers(expenseContainerObject: NSArray?){
@@ -129,6 +146,34 @@ class AppViewModel: ObservableObject {
 
 
         }
+    }
+    
+    func getRealExpenses(realExpensesArray: NSArray?){
+        
+        for real_expense_key in 0..<realExpensesArray!.count{
+            
+            let realExpense = realExpensesArray?[real_expense_key] as? NSDictionary
+            let realExpenseCategoryDescriptor = realExpense?["containerDescriptor"] as? NSDictionary
+            
+            self.realExpenses.append(RealExpense(name: realExpense?["name"] as? String ?? "", cost: realExpense?["cost"] as? Float ?? 0, containerDescriptor: RealExpense.ContainerDescriptor(title: realExpenseCategoryDescriptor?["title"] as? String ?? "", theme: Theme(rawValue: realExpenseCategoryDescriptor?["theme"] as? String ?? "indigo")!)))
+        }
+        
+    }
+    
+    func getRealExpenseContainerDifference(container: ExpenseContainer) -> Float{
+        
+        var difference: Float = container.total
+        
+        for expense in user.realExpenses {
+            if (expense.containerDescriptor.title != container.title){
+                continue
+            }
+            
+            difference -= expense.cost
+            
+        }
+        
+        return difference
     }
     
     

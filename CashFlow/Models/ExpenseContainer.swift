@@ -10,7 +10,7 @@ import Foundation
 ///customizable containers the user creates to store and itemize their expenses
 struct ExpenseContainer: Identifiable {
     
-    let id: UUID
+    var id: UUID
     var title: String
     var description: String
     var expenses: [Expense]

@@ -28,6 +28,7 @@ struct CashFlowApp: App {
                 RouterView()
                     .environmentObject(authViewModel)
             }
+            .navigationBarHidden(true)
             .onAppear{
                 authViewModel.signedIn = authViewModel.isSignedIn
             }

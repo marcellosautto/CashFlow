@@ -19,7 +19,7 @@ struct CardView: View {
                 .font(.caption)
             Spacer()
             HStack{
-                Text("Total: $\(expenseContainer.total, specifier: "%.2f")")
+                Text("Estimate: $\(expenseContainer.total, specifier: "%.2f")")
                     .font(.caption)
                 Spacer()
                 Text("\(expenseContainer.relativeTotal, specifier: "%.2f")%")
@@ -34,7 +34,7 @@ struct CardView: View {
 
 struct CardView_Previews: PreviewProvider {
     
-    static let expenseContainer: ExpenseContainer = User.sampleUser.expenseContainers[0]
+    static let expenseContainer: ExpenseContainer = ExpenseContainer.sampleData[0]
     
     static var previews: some View {
         CardView(expenseContainer: expenseContainer)

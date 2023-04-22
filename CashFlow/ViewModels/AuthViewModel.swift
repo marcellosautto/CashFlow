@@ -30,6 +30,9 @@ class AuthViewModel: ObservableObject {
                 return
             }
             
+            self?.user.email = email
+            self?.user.password = password
+            
             DispatchQueue.main.async {
                 self?.signedIn = true
             }
@@ -42,6 +45,9 @@ class AuthViewModel: ObservableObject {
             guard result != nil, error == nil else{
                 return
             }
+            
+            self?.user.email = email
+            self?.user.password = password
             
             DispatchQueue.main.async {
                 self?.signedIn = true

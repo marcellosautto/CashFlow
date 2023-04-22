@@ -12,14 +12,14 @@ struct HomeView: View {
     
     
     @EnvironmentObject var authViewModel: AuthViewModel
-    @StateObject private var appViewModel: AppViewModel = AppViewModel()
+    @EnvironmentObject var appViewModel: AppViewModel
     
-   // @State var modifiedBudgetData = BudgetInformation.sampleData
+    // @State var modifiedBudgetData = BudgetInformation.sampleData
     @State var newExpenseContainerData = ExpenseContainer.Data()
     @State var isPresentingNewExpenseCategoryView: Bool = false
     @State var isPresentingEditBudgetView: Bool = false
-        
-    let textColor: Color = Color(red: 0.15, green: 0.15, blue: 0.15)
+    
+    let textColor: Color = Color(red: 0.10, green: 0.10, blue: 0.10)
     let bgColor: Color = Color(red: 0.94, green: 0.94, blue: 0.94)
     
     
@@ -30,7 +30,7 @@ struct HomeView: View {
             
             VStack {
                 
-                Label("\(Date.now, format: .dateTime.month(.wide).day())", systemImage: "calendar")
+                Label("\(Date.now, format: .dateTime.month(.wide).day().year())", systemImage: "calendar")
                     .font(.title)
                 
                 ZStack{
@@ -79,18 +79,42 @@ struct HomeView: View {
                                     
                                 }
                         }
- 
+                        
                     }
                     
                     
                 }
                 
-                
+                ///toggles sheet for creating a new expense category
+                HStack{
+                    Spacer()
+                    Text("Categories")
+                        .font(.title3)
+                        .padding()
+                        .padding(.leading, 50)
+                    Spacer()
+                    
+                    Button(action: {isPresentingNewExpenseCategoryView = true}){
+                        
+                        Image(systemName: "plus.circle")
+                    }
+                    .padding(.horizontal)
+                    
+                    
+                }
+                .background(Color(red: 0.81, green: 0.76, blue: 0.65))
+                //.border(Color(red: 0.35, green: 0.35, blue: 0.35))
+                .cornerRadius(5)
+                .padding(.horizontal)
+                .foregroundColor(textColor)
                 
                 List {
                     
-                    ForEach($appViewModel.user.expenseContainers){$container in
-                        NavigationLink(destination: ExpenseContainerView(budgetData: $appViewModel.user.budgetInformation, expenseContainerData: $container).environmentObject(appViewModel)){
+                    
+                    ForEach($appViewModel.user.expenseContainers){ $container in
+                        NavigationLink(destination: ExpenseContainerView(budgetData: $appViewModel.user.budgetInformation, expenseContainerData: $container)
+                            .environmentObject(appViewModel))
+                        {
                             CardView(expenseContainer: container)
                                 .frame(maxWidth: .infinity)
                             
@@ -99,25 +123,8 @@ struct HomeView: View {
                         
                         
                         
+                        
                     }
-                    
-                }
-                .toolbar{
-                    
-                    ToolbarItem{
-                        ///toggles sheet for creating a new expense category
-                        Button(action: {isPresentingNewExpenseCategoryView = true}){
-                            Image(systemName: "plus")
-                        }
-                    }
-                    
-                    ToolbarItem(placement: .cancellationAction){
-                        Button("Sign Out"){
-                            authViewModel.signOut()
-                        }
-                    }
-                    
-                    
                     
                 }
                 
@@ -161,6 +168,7 @@ struct HomeView_Previews: PreviewProvider {
         NavigationView{
             HomeView()
                 .environmentObject(AuthViewModel())
+                .environmentObject(AppViewModel())
         }
         
     }
