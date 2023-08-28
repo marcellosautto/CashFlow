@@ -7,7 +7,6 @@
 
 import SwiftUI
 import Firebase
-import FirebaseDatabase
 
 class AppViewModel: ObservableObject {
     
