@@ -1,14 +1,14 @@
 //
-//  EasyBTests.swift
+//  CashFlowTests.swift
 //  EasyBTests
 //
 //  Created by Marcello Sautto on 6/4/22.
 //
 
 import XCTest
-@testable import EasyB
+@testable import CashFlow
 
-class EasyBTests: XCTestCase {
+class CashFlowTests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.

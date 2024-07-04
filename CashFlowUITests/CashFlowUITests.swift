@@ -1,13 +1,13 @@
 //
-//  EasyBUITests.swift
-//  EasyBUITests
+//  CashFlowUITests.swift
+//  CashFlowUITests
 //
 //  Created by Marcello Sautto on 6/4/22.
 //
 
 import XCTest
 
-class EasyBUITests: XCTestCase {
+class CashFlowUITests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.

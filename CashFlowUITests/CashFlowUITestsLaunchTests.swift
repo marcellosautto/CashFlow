@@ -1,13 +1,13 @@
 //
-//  EasyBUITestsLaunchTests.swift
-//  EasyBUITests
+//  CashFlowUITestsLaunchTests.swift
+//  CashFlowUITests
 //
 //  Created by Marcello Sautto on 6/4/22.
 //
 
 import XCTest
 
-class EasyBUITestsLaunchTests: XCTestCase {
+class CashFlowUITestsLaunchTests: XCTestCase {
 
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true

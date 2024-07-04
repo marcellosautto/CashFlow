@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4B039D842C3674FF003F9375 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 4B039D832C3674FF003F9375 /* FirebaseDatabase */; };
 		4B0F6F5A286A5F700054D9FF /* NavView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0F6F59286A5F700054D9FF /* NavView.swift */; };
 		4B0F6F5C286A65D20054D9FF /* RealExpenseContainerPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0F6F5B286A65D20054D9FF /* RealExpenseContainerPicker.swift */; };
 		4B0F6F5E286A66A00054D9FF /* RealExpenseContainerPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0F6F5D286A66A00054D9FF /* RealExpenseContainerPickerView.swift */; };
-		4B1F06232864EE2E000F7759 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 4B1F06222864EE2E000F7759 /* FirebaseDatabase */; };
 		4B1F062528650BDF000F7759 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1F062428650BDF000F7759 /* AuthViewModel.swift */; };
 		4B217A292858FA0E0084805F /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B217A282858FA0E0084805F /* CardView.swift */; };
 		4B217A2B285954370084805F /* ExpenseContainerEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B217A2A285954370084805F /* ExpenseContainerEditView.swift */; };
@@ -112,7 +112,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4B1F06232864EE2E000F7759 /* FirebaseDatabase in Frameworks */,
+				4B039D842C3674FF003F9375 /* FirebaseDatabase in Frameworks */,
 				4B80C5A6285A9F490060F935 /* FirebaseAuth in Frameworks */,
 				4B80C5A8285A9F490060F935 /* FirebaseFirestore in Frameworks */,
 			);
@@ -135,6 +135,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4B039D822C3674FF003F9375 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		4B2F20DA284C23E90092F677 = {
 			isa = PBXGroup;
 			children = (
@@ -142,6 +149,7 @@
 				4B2F20F6284C23EA0092F677 /* CashFlowTests */,
 				4B2F2100284C23EB0092F677 /* CashFlowUITests */,
 				4B2F20E4284C23E90092F677 /* Products */,
+				4B039D822C3674FF003F9375 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -303,7 +311,7 @@
 			packageProductDependencies = (
 				4B80C5A5285A9F490060F935 /* FirebaseAuth */,
 				4B80C5A7285A9F490060F935 /* FirebaseFirestore */,
-				4B1F06222864EE2E000F7759 /* FirebaseDatabase */,
+				4B039D832C3674FF003F9375 /* FirebaseDatabase */,
 			);
 			productName = EasyB;
 			productReference = 4B2F20E3284C23E90092F677 /* CashFlow.app */;
@@ -379,7 +387,6 @@
 			mainGroup = 4B2F20DA284C23E90092F677;
 			packageReferences = (
 				4B80C5A4285A9F490060F935 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				4B1F06212864EE2E000F7759 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 4B2F20E4284C23E90092F677 /* Products */;
 			projectDirPath = "";
@@ -780,28 +787,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		4B1F06212864EE2E000F7759 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
 		4B80C5A4285A9F490060F935 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 9.0.0;
+				kind = exactVersion;
+				version = 10.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		4B1F06222864EE2E000F7759 /* FirebaseDatabase */ = {
+		4B039D832C3674FF003F9375 /* FirebaseDatabase */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 4B1F06212864EE2E000F7759 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = 4B80C5A4285A9F490060F935 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseDatabase;
 		};
 		4B80C5A5285A9F490060F935 /* FirebaseAuth */ = {
