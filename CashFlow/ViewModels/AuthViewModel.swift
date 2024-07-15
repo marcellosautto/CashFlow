@@ -14,6 +14,8 @@ class AuthViewModel: ObservableObject {
     //MARK: AUTHENTICATION
     @Published var user: User = User(data: User.Data())
     @Published var signedIn = false
+    @Published var errIsActive: Double = 0
+    @Published var errHeight: CGFloat = 0
     
     let auth = Auth.auth()
     let dbref = Database.database().reference()
@@ -27,6 +29,8 @@ class AuthViewModel: ObservableObject {
         auth.signIn(withEmail: email, password: password) {
             [weak self] result, error in
             guard result != nil, error == nil else{
+                self?.errIsActive = 1
+                self?.errHeight = 10
                 return
             }
             
@@ -34,6 +38,8 @@ class AuthViewModel: ObservableObject {
             self?.user.password = password
             
             DispatchQueue.main.async {
+                self?.errIsActive = 0
+                self?.errHeight = 0
                 self?.signedIn = true
             }
         }

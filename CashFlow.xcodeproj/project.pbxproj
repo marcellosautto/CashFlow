@@ -41,6 +41,9 @@
 		4B80C5AC285AA09A0060F935 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B80C5AB285AA09A0060F935 /* SignUpView.swift */; };
 		4B80C5AE285AA0A70060F935 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B80C5AD285AA0A70060F935 /* SignInView.swift */; };
 		4B80C5B0285AA23C0060F935 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B80C5AF285AA23C0060F935 /* User.swift */; };
+		4BCCE3FA2C44A2170019B231 /* ResetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BCCE3F92C44A2170019B231 /* ResetPasswordView.swift */; };
+		4BCCE3FB2C44A2170019B231 /* ResetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BCCE3F92C44A2170019B231 /* ResetPasswordView.swift */; };
+		4BCCE3FC2C44A2170019B231 /* ResetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BCCE3F92C44A2170019B231 /* ResetPasswordView.swift */; };
 		4BF41B572857E5F60035840F /* ExpenseContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF41B562857E5F60035840F /* ExpenseContainer.swift */; };
 		4BF41B592857E7C90035840F /* ThemeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF41B582857E7C90035840F /* ThemeView.swift */; };
 		4BF41B5B2857E9910035840F /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF41B5A2857E9910035840F /* Theme.swift */; };
@@ -100,6 +103,7 @@
 		4B80C5AB285AA09A0060F935 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		4B80C5AD285AA0A70060F935 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		4B80C5AF285AA23C0060F935 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		4BCCE3F92C44A2170019B231 /* ResetPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordView.swift; sourceTree = "<group>"; };
 		4BF41B562857E5F60035840F /* ExpenseContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseContainer.swift; sourceTree = "<group>"; };
 		4BF41B582857E7C90035840F /* ThemeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeView.swift; sourceTree = "<group>"; };
 		4BF41B5A2857E9910035840F /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
@@ -266,6 +270,7 @@
 			isa = PBXGroup;
 			children = (
 				4B80C5AB285AA09A0060F935 /* SignUpView.swift */,
+				4BCCE3F92C44A2170019B231 /* ResetPasswordView.swift */,
 				4B80C5AD285AA0A70060F935 /* SignInView.swift */,
 			);
 			path = Auth;
@@ -432,6 +437,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4BF41B5D2857EB880035840F /* ThemePicker.swift in Sources */,
+				4BCCE3FA2C44A2170019B231 /* ResetPasswordView.swift in Sources */,
 				4B80C5AC285AA09A0060F935 /* SignUpView.swift in Sources */,
 				4B7CD5AC285AE84A00F9D448 /* AppViewModel.swift in Sources */,
 				4B486999284DA48F0082818F /* ExpensesEditView.swift in Sources */,
@@ -469,6 +475,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4B2F20F8284C23EA0092F677 /* CashFlowTests.swift in Sources */,
+				4BCCE3FB2C44A2170019B231 /* ResetPasswordView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -476,6 +483,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4BCCE3FC2C44A2170019B231 /* ResetPasswordView.swift in Sources */,
 				4B2F2102284C23EB0092F677 /* CashFlowUITests.swift in Sources */,
 				4B2F2104284C23EB0092F677 /* CashFlowUITestsLaunchTests.swift in Sources */,
 			);

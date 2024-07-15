@@ -20,17 +20,24 @@ struct SettingsView: View {
             VStack{
                 Text("Settings")
                     .font(.title)
-                List{
+                    .padding(.bottom)
+                HStack{
                     Label("\(authViewModel.user.email)", systemImage: "person.fill")
+                }
+                List {
+                    NavigationLink {
+                        ResetPasswordView()
+                    } label: {
+                        Text("Change Password")
+                            .foregroundStyle(.cyan)
+                    }
                     Button("Sign Out"){
                         authViewModel.signOut()
                     }
-                    Button("Change Password"){
-                        
-                    }.foregroundColor(Color.red)
-                    
                 }
-            }
+                
+                Spacer()
+            }.padding()
             
         }
         
